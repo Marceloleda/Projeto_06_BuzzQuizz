@@ -1,6 +1,9 @@
 * {
     box-sizing: border-box;
 }
+body {
+    font-family: 'Roboto', sans-serif;
+}
 
 header {
     background: #EC362D;
@@ -60,6 +63,99 @@ header h2 {
     text-align: center;
     color: #EC362D;
 }
+.removendo-tela {
+    display: none;
+}
+/* Final das classes referentes ao cabeçalho */
+
+/* Início das classes referentes à tela 3-3 */
+.tela-3-3 {
+    width: 50vw;
+    margin: 0px auto;
+    border: solid;
+}
+.titulo-tela-3-3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 23px;
+    line-height: 27px;
+    color: #000000;
+    margin-bottom: 43px; 
+}
+.nivel-1 {
+    height: 316px;
+    padding: 10px;
+}
+.nivel-1 h4 {
+    margin-bottom: 12px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23px;
+    display: flex;
+    align-items: center;
+    color: #000000;
+    
+}
+.nivel-2 h4 {
+    margin-bottom: 12px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23px;
+    display: flex;
+    align-items: center;
+    color: #000000;
+    
+}
+.nivel-3 h4 {
+    margin-bottom: 12px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23px;
+    display: flex;
+    align-items: center;
+    color: #000000;
+    
+}
+.nivel-1 input {
+    background: #FFFFFF;
+    width: 95%;
+    padding-left: 10px;
+    height: 46px;
+    border: 1px solid #D1D1D1;
+    box-sizing: border-box;
+    border-radius: 5px;
+    background: #FFFFFF;
+    border: 1px solid #D1D1D1;
+    box-sizing: border-box;
+    border-radius: 5px;
+    font-family: 'Roboto';
+    font-style: italic;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 22px;
+    color: #BABABA;
+    
+}
+
+.nivel-2 {
+    padding: 10px;
+}
+
+.nivel-3 {
+    padding: 10px;
+}
+
+/* Fim das classes referentes à tela 3-3 */
 
 
 
@@ -67,3 +163,10 @@ header h2 {
 
 
 
+/* Início da versão Mobile  */
+@media (max-width: 1100px) {
+    body {
+      max-width: 1100px;
+    
+}
+}
