@@ -81,7 +81,7 @@ header h2 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 420px;
+    /*height: 420px;*/
     width: 80vw;
 }
 .tela-3-1 h1{
@@ -255,8 +255,71 @@ header h2 {
     
 }
 
-
 /* Fim das classes referentes à tela 3-3 */
+
+/* Início da tela 3.4 - Sucesso do Quizz  */
+.titulo-3-4 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.tela-3-4 h2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 46px;
+    margin-bottom: 45px;
+}
+.titulo-3-4 h2 {
+    margin-top: 71px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 23px;
+    line-height: 27px;
+    margin: 0px auto;
+    /* identical to box height */
+    display: flex;
+    align-items: center;
+    
+    color: #000000;
+}
+footer button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 220.32px;
+    height: 44px;
+    left: 609px;
+    top: 524px;
+    background: #EC362D;
+    border-radius: 15px;
+    margin: 0 auto;
+}
+footer button h3 {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 25px;
+    color: #FFF5F4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+footer h3 {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 25px;
+    color: #818181;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+    margin-top: 10px;
+}
 
 
 /* Início da versão Mobile  */

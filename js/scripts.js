@@ -1,8 +1,13 @@
+//Variáveis globais
+
+
+
+//função crarQuizz
 function criarQuizz() {
     let removendotela = document.querySelector(".criar-quizz");
     removendotela.classList.add("removendo-tela");
-    
-    infoBasica();
+   
+   infoBasica()
 }
 
 //Criação da tela Tela 3.1 - Info básica do Quiz
@@ -132,3 +137,21 @@ function finalizarQuizz() {
 
 // Final da função finalizar Quizz
 
+// Função tela 3-4
+function tela34() {
+    let escrevendotela = document.querySelector(".tela-3-4")
+    escrevendotela.classList.remove("removendo-tela")
+    escrevendotela.innerHTML = ` <div class="titulo-3-4">
+    <h2>Seu quizz está pronto</h2>
+</div>
+
+<h2> (Aqui estará o Quizz finalizado)</h2>
+
+<footer>
+    <button>
+        <h3>Acessar Quizz</h3>
+    </button>
+    <h3> Voltar pra home</h3>
+</footer>   
+    `
+}
