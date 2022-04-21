@@ -3,6 +3,7 @@
 }
 body {
     font-family: 'Roboto', sans-serif;
+    background: #E5E5E5;
 }
 
 header {
@@ -89,6 +90,7 @@ header h2 {
 .nivel-1 {
     height: 316px;
     padding: 10px;
+    background-color: white;
 }
 .nivel-1 h4 {
     margin-bottom: 12px;
@@ -148,12 +150,58 @@ header h2 {
 }
 
 .nivel-2 {
+    margin-top:24px;
     padding: 10px;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.nivel-2 img {
+    width: 26px;
+    height: 23px;
 }
 
 .nivel-3 {
+    margin-top:24px;
     padding: 10px;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 75px;
 }
+.nivel-3 img {
+    width: 26px;
+    height: 23px;
+}
+
+.botao-finalizar-quizz {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.botao-finalizar-quizz button{
+    width: 324px;
+    height: 54px;
+    background: #EC362D;
+    border-radius: 15px;
+}
+.botao-finalizar-quizz h3 {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 25px;
+    display: flex;
+    align-items: center;
+   justify-content: center;
+    color: #FFF5F4;
+    
+    
+}
+
 
 /* Fim das classes referentes à tela 3-3 */
 
