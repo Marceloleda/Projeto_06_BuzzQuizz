@@ -7,7 +7,7 @@ body {
 }
 
 header {
-    background: #EC362D;
+    background: #E3462D;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -63,6 +63,11 @@ header h2 {
     align-items: center;
     text-align: center;
     color: #EC362D;
+}
+button:hover{
+    background-color: #e4c4be; 
+    transition: 0.5s;
+    cursor: pointer;
 }
 .removendo-tela {
     display: none;
