@@ -30,7 +30,6 @@ function renderizandoQuizzes() {
                     <h3>${quizzesApi[i].title}</h3>
                 </div>
                 
-            
             `
         }
 }
@@ -40,7 +39,7 @@ function renderizandoQuizzes() {
 function criarQuizz() {
     let removendotela = document.querySelector(".criar-quizz");
     removendotela.classList.add("removendo-tela");
-    
+
    infoBasica()
 }
 

@@ -98,6 +98,8 @@ header h2 {
     width: 340px;
     height: 181px;
     margin: 10px 5px;
+    background: linear-gradient(black, green);
+    border-radius: 5px;
 }
 .quiz {
     position: relative;
