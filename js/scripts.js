@@ -1,12 +1,46 @@
 //Variáveis globais
+let quizzesApi = [];
 
+// Tela 1 - Pegando Quizzes da API
+function buscandoQuizzes() {
+    let promise = axios.get("https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes")
+    promise.then(carregandoQuizzes);
+    promise.catch(erroQuizzes);
+}
+
+function carregandoQuizzes(quizzes) {
+    console.log("Os quizzes da API foram carregados");
+    quizzesApi = quizzes.data;
+    console.log("A quantidade de quizzes é: " + quizzesApi.length);
+    console.log(quizzesApi[0].title)
+    console.log(quizzesApi[0].image)
+    renderizandoQuizzes()
+}
+function erroQuizzes() {
+    console.log("Os quizzes não foram carregados")
+}
+function renderizandoQuizzes() {
+    let todosOsQuizzes = document.querySelector(".lista-quizzes")
+        todosOsQuizzes.innerHTML = "";
+       
+        for(let i=0; i<quizzesApi.length; i++) {
+            todosOsQuizzes.innerHTML += `
+                <div class="quiz">
+                    <img src="${quizzesApi[i].image}" alt="">
+                    <h3>${quizzesApi[i].title}</h3>
+                </div>
+                
+            
+            `
+        }
+}
 
 
 //função crarQuizz
 function criarQuizz() {
     let removendotela = document.querySelector(".criar-quizz");
     removendotela.classList.add("removendo-tela");
-   
+    
    infoBasica()
 }
 
@@ -155,3 +189,5 @@ function tela34() {
 </footer>   
     `
 }
+ 
+buscandoQuizzes();
