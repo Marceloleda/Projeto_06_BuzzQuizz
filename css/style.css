@@ -73,7 +73,7 @@ header h2 {
 .tela-3-3 {
     width: 50vw;
     margin: 0px auto;
-    border: solid;
+    
 }
 .titulo-tela-3-3 {
     display: flex;
@@ -128,7 +128,7 @@ header h2 {
     color: #000000;
     
 }
-.nivel-1 input {
+.tela-3-3 input {
     background: #FFFFFF;
     width: 95%;
     padding-left: 10px;
@@ -153,6 +153,9 @@ header h2 {
     margin-top:24px;
     padding: 10px;
     background-color: white;
+    
+}
+.nivel-2-cabecalho {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -166,21 +169,22 @@ header h2 {
     margin-top:24px;
     padding: 10px;
     background-color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 75px;
+
 }
 .nivel-3 img {
     width: 26px;
     height: 23px;
 }
-
+.nivel-3-cabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 .botao-finalizar-quizz {
     display: flex;
     justify-content: center;
     align-items: center;
-    
+    margin-top: 75px;
 }
 .botao-finalizar-quizz button{
     width: 324px;
