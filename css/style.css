@@ -9,7 +9,6 @@ body {
 
 header {
     background: #EC362D;
-    display: flex;
     justify-content: center;
     align-items: center;
     height: 69px;
@@ -27,6 +26,33 @@ header h2 {
     font-size: 37px;
     line-height: 43px;
     color: #FFFFFF;   
+    margin: 0px auto;
+}
+.header-titulo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.header-pag-quizz{
+    position: relative;
+}
+.header-pag-quizz h3 {
+    position: absolute;
+    top:87px;
+    left: 409px;
+    width: 50vw;
+    margin-left: 20px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 39px;
+    line-height: 46px;
+    color: #FFFFFF;
+}
+header img {
+    width: 100vw;
+    height: 227px;
+    margin-left: 0px;
 }
 .criar-quizz {
     display: flex;
@@ -126,7 +152,11 @@ header h2 {
     justify-content: center;
     color: #FFFFFF;
 }
-
+/* Tela 2 - Página de um Quizz */
+    .perguntas {
+        border: solid;
+        width: 90vw;
+    }
 /* Tela 3.1 - Info básica do Quiz */
 .tela-3-1{
     display: flex;
@@ -376,6 +406,15 @@ footer h3 {
 @media (max-width: 1100px) {
     body {
       max-width: 1100px;
-    
 }
+    .quizzes-api h2 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .lista-quizzes {
+        flex-direction: column;
+        margin: 0px auto;
+        align-items: center;
+    }
 }

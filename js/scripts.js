@@ -37,8 +37,10 @@ function renderizandoQuizzes() {
 
 //função crarQuizz
 function criarQuizz() {
-    let removendotela = document.querySelector(".criar-quizz");
-    removendotela.classList.add("removendo-tela");
+    let removendotela1 = document.querySelector(".criar-quizz");
+    let removendotela2 = document.querySelector(".quizzes-api")
+    removendotela1.classList.add("removendo-tela");
+    removendotela2.classList.add("removendo-tela");
 
    infoBasica()
 }
