@@ -35,15 +35,19 @@ function renderizandoQuizzes() {
 }
 
 
-//função crarQuizz
+//função crarQuizz 3.1
 function criarQuizz() {
     let removendotela = document.querySelector(".criar-quizz");
     removendotela.classList.add("removendo-tela");
     let removendoQuizzes = document.querySelector(".quizzes-api");
     removendoQuizzes.classList.add("removendo-tela");
 
-
-   infoBasica();
+   infoBasica(); 
+}
+//Proxima tela para a 3.2
+function proximaTela(){
+    let passaTela = document.querySelector(".infoQuizz");
+    passaTela.classList.add("removendo-tela");
 }
 
 //Criação da tela Tela 3.1 - Info básica do Quiz
@@ -57,9 +61,8 @@ function infoBasica(){
             <input class="quantidadePerguntas" type="number" min="3" placeholder="Quantidade de perguntas do quizz">
             <input class="quantidadeNiveis" type="number" min="2" placeholder="Quantidade de níveis do quizz">
         </div>
-        <button type="submit" value="foo"></button>
+        <button type="submit" onclick="proximaTela()">Prosseguir pra criar perguntas</button>
     `;
-    
     infoQuizz.innerHTML += formularioBasico;
 }
 

@@ -134,6 +134,7 @@ header h2 {
     align-items: center;
     /*height: 420px;*/
     width: 80vw;
+    margin: 0 auto;
 }
 .tela-3-1 h1{
     font-size: 23px;
@@ -167,6 +168,11 @@ header h2 {
     box-sizing: border-box;
     border-radius: 5px;
     outline: 0;
+    font-family: 'Roboto';
+    font-style: italic;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 22px;
 }
 .infoQuizz input:invalid {
     border: 1px solid red;
