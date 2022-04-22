@@ -166,6 +166,10 @@ header h2 {
     border: 1px solid #D1D1D1;
     box-sizing: border-box;
     border-radius: 5px;
+    outline: 0;
+}
+.infoQuizz input:invalid {
+    border: 1px solid red;
 }
 
 
