@@ -37,12 +37,13 @@ function renderizandoQuizzes() {
 
 //função crarQuizz
 function criarQuizz() {
-    let removendotela1 = document.querySelector(".criar-quizz");
-    let removendotela2 = document.querySelector(".quizzes-api")
-    removendotela1.classList.add("removendo-tela");
-    removendotela2.classList.add("removendo-tela");
+    let removendotela = document.querySelector(".criar-quizz");
+    removendotela.classList.add("removendo-tela");
+    let removendoQuizzes = document.querySelector(".quizzes-api");
+    removendoQuizzes.classList.add("removendo-tela");
 
-   infoBasica()
+
+   infoBasica();
 }
 
 //Criação da tela Tela 3.1 - Info básica do Quiz
@@ -51,13 +52,14 @@ function infoBasica(){
     let formularioBasico =`
         <h1>Comece pelo começo</h1>
         <div class="infoQuizz">
-            <input class="tituloQuizz" type=""text placeholder="Título do seu quizz">
-            <input class="urlImage" type=""text placeholder="URL da imagem do seu quizz">
-            <input class="quantidadePerguntas" type=""text placeholder="Quantidade de perguntas do quizz">
-            <input class="quantidadeNiveis" type=""text placeholder="Quantidade de níveis do quizz">
+            <input class="tituloQuizz" type="text" minlength="20" maxlength="65" x-moz-errormessage="" placeholder="Título do seu quizz" >
+            <input class="urlImage" type="url" placeholder="URL da imagem do seu quizz">
+            <input class="quantidadePerguntas" type="number" min="3" placeholder="Quantidade de perguntas do quizz">
+            <input class="quantidadeNiveis" type="number" min="2" placeholder="Quantidade de níveis do quizz">
         </div>
-        <button onclick="funcao()">Prosseguir pra criar perguntas</button>
+        <button type="submit" value="foo"></button>
     `;
+    
     infoQuizz.innerHTML += formularioBasico;
 }
 
