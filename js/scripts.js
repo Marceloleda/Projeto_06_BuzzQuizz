@@ -27,14 +27,57 @@ function renderizandoQuizzes() {
             todosOsQuizzes.innerHTML += `
                 <div class="quiz">
                     <img src="${quizzesApi[i].image}" alt="">
-                    <h3>${quizzesApi[i].title}</h3>
+                    <h3 onclick="obtendoQuizz()">${quizzesApi[i].title}</h3>
                 </div>
                 
             `
         }
 }
 
-//função crarQuizz 3.1
+//tela 2: Página de um quizz
+function obtendoQuizz() {
+    let removendotela1 = document.querySelector(".header-pag-quizz")
+    removendotela1.classList.remove("removendo-tela")
+    let removendotela2 = document.querySelector(".criar-quizz")
+    removendotela2.classList.add("removendo-tela")
+    let removendotela3 = document.querySelector(".quizzes-api")
+    removendotela3.classList.add("removendo-tela")
+    let removendotela4 = document.querySelector(".perguntas")
+    removendotela4.classList.remove("removendo-tela")
+
+    removendotela4.innerHTML = ""
+
+    for(let i=1; i<4;i++) {
+        removendotela4.innerHTML += `
+        <div class="pergunta${i}">
+            <div class="pergunta${i}-titulo">
+                titulo da pergunta
+            </div>
+            <div class="imagens-perguntas">
+                <div class="conteudo-pergunta">
+                    <img src="imagens/image 3.png" alt="">
+                    <h3>titulo da alternativa</h3>
+                </div>
+                <div class="conteudo-pergunta">
+                    <img src="imagens/image 3.png" alt="">
+                    <h3>titulo da alternativa</h3>
+                </div>
+                <div class="conteudo-pergunta">
+                    <img src="imagens/image 3.png" alt="">
+                    <h3>titulo da alternativa</h3>
+                </div>
+                <div class="conteudo-pergunta">
+                    <img src="imagens/image 3.png" alt="">
+                    <h3>titulo da alternativa</h3>
+                </div>
+            </div>
+        </div>
+        `
+    }
+    
+console.log("Perguntas criadas")
+}
+//função criarQuizz 3.1
 function criarQuizz() {
     let removendotela = document.querySelector(".criar-quizz");
     removendotela.classList.add("removendo-tela");
@@ -65,7 +108,7 @@ function proximoFormulario(){
     validacaoTela1();
 }
 
-//Dados das inforações básicas
+//Dados das inforações básicas da tela 3.1
 function guardaDados(){
     let tituloQuizz = document.querySelector(".tituloQuizz").value;
     let urlImage = document.querySelector(".urlImage").value;
@@ -75,8 +118,8 @@ function guardaDados(){
     console.log(urlImage)
     console.log(quantidadePerguntas)
     console.log(quantidadeNiveis)
-    let trocaTela = document.querySelector('.tela-3-1').style.visibility = 'hidden';
-
+    document.querySelector('.tela-3-1').style.visibility = 'hidden';
+    perguntasQuizz();
 }
 
 //Criação da tela Tela 3.1 - Info básica do Quiz
