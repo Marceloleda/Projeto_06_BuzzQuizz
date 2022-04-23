@@ -183,6 +183,7 @@ header img {
     height: 54px;
     /* width: 370px; */
     margin-top: 85px;
+    
 }
 .infoQuizz{
     padding: 20px;
@@ -201,12 +202,16 @@ header img {
     box-sizing: border-box;
     border-radius: 5px;
     outline: 0;
+    font-weight: 400;
+    font-size: 19px;
+}
+.infoQuizz input::placeholder{
     font-style: italic;
     font-weight: 400;
     font-size: 19px;
     line-height: 22px;
 }
-.infoQuizz input:invalid {
+.infoQuizz input:invalid{
     border: 1px solid red;
 }
 

@@ -34,7 +34,6 @@ function renderizandoQuizzes() {
         }
 }
 
-
 //função crarQuizz 3.1
 function criarQuizz() {
     let removendotela = document.querySelector(".criar-quizz");
@@ -44,15 +43,45 @@ function criarQuizz() {
 
    infoBasica(); 
 }
-//Proxima tela para a 3.2
-function proximaTela(){
-    let passaTela = document.querySelector(".infoQuizz");
-    passaTela.classList.add("removendo-tela");
+//Validação para proxima tela 3.2
+function validacaoTela1(){
+    let input = document.querySelector(".infoQuizz input:invalid");
+    let inputNull = document.querySelectorAll("input");
+    let validacao1;
+    let validacao2;
+    if(inputNull[0].value == "" || inputNull[1].value == "" || inputNull[2].value == "" || inputNull[3].value == ""){
+        alert("Ops! Preencha todos os campos para prosseguir! ;)");
+    }else{validacao1 = true;}
+   
+    if(input){
+        alert("Ops! Algo de errado não está certo...Coloque o mouse em cima da caixa vermelha e veja os critérios para prosseguir! ;)");
+    }else{validacao2 = true;}
+
+    if(validacao1 && validacao2 ){
+        guardaDados();
+    }
+}
+function proximoFormulario(){
+    validacaoTela1();
+}
+
+//Dados das inforações básicas
+function guardaDados(){
+    let tituloQuizz = document.querySelector(".tituloQuizz").value;
+    let urlImage = document.querySelector(".urlImage").value;
+    let quantidadePerguntas = document.querySelector(".quantidadePerguntas").value;
+    let quantidadeNiveis = document.querySelector(".quantidadeNiveis").value;
+    console.log(tituloQuizz)
+    console.log(urlImage)
+    console.log(quantidadePerguntas)
+    console.log(quantidadeNiveis)
+    let trocaTela = document.querySelector('.tela-3-1').style.visibility = 'hidden';
+
 }
 
 //Criação da tela Tela 3.1 - Info básica do Quiz
 function infoBasica(){
-    const infoQuizz = document.querySelector('.tela-3-1');
+    let infoQuizz = document.querySelector('.tela-3-1');
     let formularioBasico =`
         <h1>Comece pelo começo</h1>
         <div class="infoQuizz">
@@ -61,10 +90,25 @@ function infoBasica(){
             <input class="quantidadePerguntas" type="number" min="3" placeholder="Quantidade de perguntas do quizz">
             <input class="quantidadeNiveis" type="number" min="2" placeholder="Quantidade de níveis do quizz">
         </div>
-        <button type="submit" onclick="proximaTela()">Prosseguir pra criar perguntas</button>
+        <button type="submit" onclick="proximoFormulario()">Prosseguir pra criar perguntas</button>
     `;
     infoQuizz.innerHTML += formularioBasico;
 }
+//função para criar a Tela 3.2 - Perguntas do Quiz
+function perguntasQuizz(){
+    let criaPergunta = document.querySelector('.tela-3-2');
+    let perguntas =`
+        <h1>Comece pelo começo</h1>
+        <div class="infoQuizz">
+            <input class="tituloQuizz" type="text" minlength="20" maxlength="65" x-moz-errormessage="" placeholder="Título do seu quizz" >
+            <input class="urlImage" type="url" placeholder="URL da imagem do seu quizz">
+            <input class="quantidadePerguntas" type="number" min="3" placeholder="Quantidade de perguntas do quizz">
+        </div>
+        <button onclick="proximaTela()">Prosseguir pra criar perguntas</button>
+    `;
+    criaPergunta.innerHTML += perguntas;
+}
+
 
 // Função tela33: Essa função escreve a tela 3-3 e será ativada ao final da tela 3-2
 
