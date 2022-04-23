@@ -1,6 +1,6 @@
 //Variáveis globais
 let quizzesApi = [];
-
+let quiz_api = [];
 // Tela 1 - Pegando Quizzes da API
 function buscandoQuizzes() {
     let promise = axios.get("https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes")
@@ -25,9 +25,9 @@ function renderizandoQuizzes() {
        
         for(let i=0; i<quizzesApi.length; i++) {
             todosOsQuizzes.innerHTML += `
-                <div class="quiz">
+                <div class="quiz" id="${quizzesApi[i].id}">
                     <img src="${quizzesApi[i].image}" alt="">
-                    <h3 onclick="obtendoQuizz()">${quizzesApi[i].title}</h3>
+                    <h3 onclick="obtendoQuizz(${quizzesApi[i].id})">${quizzesApi[i].title}</h3>
                 </div>
                 
             `
@@ -35,48 +35,79 @@ function renderizandoQuizzes() {
 }
 
 //tela 2: Página de um quizz
-function obtendoQuizz() {
-    let removendotela1 = document.querySelector(".header-pag-quizz")
-    removendotela1.classList.remove("removendo-tela")
+function obtendoQuizz(meuId) {
     let removendotela2 = document.querySelector(".criar-quizz")
     removendotela2.classList.add("removendo-tela")
     let removendotela3 = document.querySelector(".quizzes-api")
     removendotela3.classList.add("removendo-tela")
-    let removendotela4 = document.querySelector(".perguntas")
-    removendotela4.classList.remove("removendo-tela")
+    
+    let identificador = meuId
+  
+    console.log("o ID obtido é: " + identificador);
+    let requisicao = "https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes/" + identificador
 
-    removendotela4.innerHTML = ""
+    let promise = axios.get(requisicao);
+    promise.then(carregandoQuiz);
+    promise.catch(erroQuiz);
 
-    for(let i=1; i<4;i++) {
-        removendotela4.innerHTML += `
+    
+    
+}
+function carregandoQuiz(resposta) {
+    console.log("O quiz foi carregado")
+    let paginaDoQuizz = document.querySelector(".perguntas")
+    paginaDoQuizz.classList.remove("removendo-tela")
+    let cabecalhoDoQuizz = document.querySelector(".header-pag-quizz")
+    cabecalhoDoQuizz.classList.remove("removendo-tela")
+
+    quiz_api = resposta.data
+
+    cabecalhoDoQuizz.innerHTML = `
+    <img src="${quiz_api.image}" alt="">
+    <h3> ${quiz_api.title}</h3>
+    `
+
+    console.log(quiz_api.title)
+    console.log(" A quantidade de PERGUNTAS É: "+ quiz_api.questions.length);
+    console.log(" A quantidade de ALTERNATIVAS É: "+ quiz_api.questions[0].answers.length);
+    paginaDoQuizz.innerHTML = ""
+
+    for(let i=0; i < quiz_api.questions.length;i++) {
+    
+            paginaDoQuizz.innerHTML += `
         <div class="pergunta${i}">
             <div class="pergunta${i}-titulo">
-                titulo da pergunta
+                ${quiz_api.questions[i].title} 
             </div>
             <div class="imagens-perguntas">
                 <div class="conteudo-pergunta">
                     <img src="imagens/image 3.png" alt="">
-                    <h3>titulo da alternativa</h3>
+                    <h3>alternativa </h3>
                 </div>
                 <div class="conteudo-pergunta">
                     <img src="imagens/image 3.png" alt="">
-                    <h3>titulo da alternativa</h3>
+                    <h3>alternativa </h3>
                 </div>
                 <div class="conteudo-pergunta">
                     <img src="imagens/image 3.png" alt="">
-                    <h3>titulo da alternativa</h3>
+                    <h3>alternativa </h3>
                 </div>
                 <div class="conteudo-pergunta">
                     <img src="imagens/image 3.png" alt="">
-                    <h3>titulo da alternativa</h3>
+                    <h3>alternativa </h3>
                 </div>
             </div>
         </div>
         `
+        
+        
     }
-    
-console.log("Perguntas criadas")
 }
+function erroQuiz() {
+    console.log("O quiz NÃO foi carregado")
+}
+
+
 //função criarQuizz 3.1
 function criarQuizz() {
     let removendotela = document.querySelector(".criar-quizz");

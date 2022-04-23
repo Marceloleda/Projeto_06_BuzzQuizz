@@ -165,11 +165,26 @@ header h2 {
     flex-wrap: wrap;
     justify-content: space-between;
 }
+.pergunta1 {
+    margin-top: 100px;
+}
 .pergunta2 {
     margin-top: 100px;
 }
-.pergunta3 {
-    margin-top: 100px;
+.pergunta0-titulo {
+    height: 137.99px;
+    background: #434CA0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 23px;
+    line-height: 27px;
+    text-align: center;
+    color: #FFFFFF;
+    margin-bottom: 18px;    
 }
 .pergunta1-titulo {
     height: 137.99px;
