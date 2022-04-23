@@ -8,7 +8,6 @@ body {
 }
 header {
     background: #E3462D;
-    display: flex;
     justify-content: center;
     align-items: center;
     height: 69px;
@@ -27,14 +26,22 @@ header h2 {
     line-height: 43px;
     color: #FFFFFF;   
     margin: 0px auto;
+    
 }
 .header-titulo {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.header-pag-quizz{
+.header-pag-quizz  {
     position: relative;
+    margin-top: 25px;
+    margin-left: 0px;
+}
+.header-pag-quizz img{
+    position: absolute;
+    width: 99vw;
+    height: 227px;
 }
 .header-pag-quizz h3 {
     position: absolute;
@@ -48,11 +55,6 @@ header h2 {
     font-size: 39px;
     line-height: 46px;
     color: #FFFFFF;
-}
-header img {
-    width: 100vw;
-    height: 227px;
-    margin-left: 0px;
 }
 .criar-quizz {
     display: flex;
@@ -154,16 +156,86 @@ header img {
     color: #FFFFFF;
 }
 /* Tela 2 - Página de um Quizz */
-    .perguntas {
-        border: solid;
-        width: 90vw;
-    }
+.perguntas {
+    width: 55vw;
+    margin: 250px auto 0px auto;
+}
+.imagens-perguntas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.pergunta2 {
+    margin-top: 100px;
+}
+.pergunta3 {
+    margin-top: 100px;
+}
+.pergunta1-titulo {
+    height: 137.99px;
+    background: #434CA0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 23px;
+    line-height: 27px;
+    text-align: center;
+    color: #FFFFFF;
+    margin-bottom: 18px;    
+}
+.pergunta2-titulo {
+    height: 137.99px;
+    background: #A0438D;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 23px;
+    line-height: 27px;
+    text-align: center;
+    color: #FFFFFF;
+    margin-bottom: 18px;    
+}
+.pergunta3-titulo {
+    height: 137.99px;
+    background: green;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 23px;
+    line-height: 27px;
+    text-align: center;
+    color: #FFFFFF;
+    margin-bottom: 18px;    
+}
+.conteudo-pergunta img {
+    width: 27vw;
+    height: 20vw;
+}
+.conteudo-pergunta h3 {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23px;
+    display: flex;
+    align-items: center;
+    color: #000000;
+    margin-top: 5px;
+}
 /* Tela 3.1 - Info básica do Quiz */
 .tela-3-1{
     display: flex;
     flex-direction: column;
     align-items: center;
-    /*height: 420px;*/
     width: 80vw;
 }
 .tela-3-1 h1{
@@ -420,6 +492,11 @@ footer h3 {
     .lista-quizzes {
         flex-direction: column;
         margin: 0px auto;
+        align-items: center;
+    }
+    .imagens-perguntas {
+        flex-direction: column;
+        justify-content: center;
         align-items: center;
     }
 }
