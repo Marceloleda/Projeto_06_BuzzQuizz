@@ -1,5 +1,13 @@
 //Variáveis globais
 let quizzesApi = [];
+let tituloQuizz = "";
+let urlImage = "";
+let quantidadePerguntas = "";
+let quantidadeNiveis = "";
+
+
+
+
 
 // Tela 1 - Pegando Quizzes da API
 function buscandoQuizzes() {
@@ -110,15 +118,17 @@ function proximoFormulario(){
 
 //Dados das inforações básicas da tela 3.1
 function guardaDados(){
-    let tituloQuizz = document.querySelector(".tituloQuizz").value;
-    let urlImage = document.querySelector(".urlImage").value;
-    let quantidadePerguntas = document.querySelector(".quantidadePerguntas").value;
-    let quantidadeNiveis = document.querySelector(".quantidadeNiveis").value;
+    tituloQuizz = document.querySelector(".tituloQuizz").value;
+    urlImage = document.querySelector(".urlImage").value;
+    quantidadePerguntas = document.querySelector(".quantidadePerguntas").value;
+    quantidadeNiveis = document.querySelector(".quantidadeNiveis").value;
     console.log(tituloQuizz)
     console.log(urlImage)
     console.log(quantidadePerguntas)
     console.log(quantidadeNiveis)
-    document.querySelector('.tela-3-1').style.visibility = 'hidden';
+    // document.querySelector('.tela-3-1').style.visibility = 'hidden';
+    const div = document.querySelector(".tela-3-1");
+    div.remove();
     perguntasQuizz();
 }
 
@@ -141,13 +151,35 @@ function infoBasica(){
 function perguntasQuizz(){
     let criaPergunta = document.querySelector('.tela-3-2');
     let perguntas =`
-        <h1>Comece pelo começo</h1>
-        <div class="infoQuizz">
-            <input class="tituloQuizz" type="text" minlength="20" maxlength="65" x-moz-errormessage="" placeholder="Título do seu quizz" >
-            <input class="urlImage" type="url" placeholder="URL da imagem do seu quizz">
-            <input class="quantidadePerguntas" type="number" min="3" placeholder="Quantidade de perguntas do quizz">
+        <h1>Crie suas perguntas</h1>
+        <div class="perguntasQuizz">
+            <div> <h1>Pergunta 1</h1> </div>
+            <input class="tituloQuizz" type="text" minlength="20" x-moz-errormessage="" placeholder="Texto da pergunta" >
+            <input class="urlImage" type="url" placeholder="Cor de fundo da pergunta">
+
+            <div> <h2>Resposta correta</h2> </div>
+            <input class="quantidadePerguntas" type="number" min="3" placeholder="Resposta correta">
+            <input class="quantidadePerguntas" type="number" min="3" placeholder="URL da imagem">
+
+            <div> <h2>Respostas incorretas</h2> </div>
+            <input class="quantidadePerguntas" type="number" min="3" placeholder="Resposta incorreta 1">
+            <input class="quantidadePerguntas" type="number" min="3" placeholder="URL da imagem 1">
+
+            <input class="quantidadePerguntas" type="number" min="3" placeholder="Resposta incorreta 2">
+            <input class="quantidadePerguntas" type="number" min="3" placeholder="URL da imagem 2">
+
+            <input class="quantidadePerguntas" type="number" min="3" placeholder="Resposta incorreta 3">
+            <input class="quantidadePerguntas" type="number" min="3" placeholder="URL da imagem 3">
         </div>
-        <button onclick="proximaTela()">Prosseguir pra criar perguntas</button>
+        <div class="pergunta2-tela-3-2">
+            <div><h1>Pergunta 2</h1></div>
+            <img src="./imagens/Vector.png" alt="botao de editar" />
+        </div>
+        <div class="pergunta2-tela-3-2">
+            <div><h1>Pergunta 3</h1></div>
+            <img src="./imagens/Vector.png" alt="botao de editar" />
+        </div>
+            <button onclick="proximaTela()">Prosseguir pra criar perguntas</button>
     `;
     criaPergunta.innerHTML += perguntas;
 }

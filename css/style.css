@@ -165,7 +165,7 @@ header h2 {
     flex-wrap: wrap;
     justify-content: space-between;
 }
-.pergunta2 {
+.-tela-3-2 {
     margin-top: 100px;
 }
 .pergunta3 {
@@ -231,7 +231,7 @@ header h2 {
     color: #000000;
     margin-top: 5px;
 }
-/* Tela 3.1 - Info básica do Quiz */
+/* =================Tela 3.1 - Info básica do Quiz =====================*/
 .tela-3-1{
     display: flex;
     flex-direction: column;
@@ -253,9 +253,9 @@ header h2 {
     align-items: center;
     border-radius: 15px;
     height: 54px;
-    /* width: 370px; */
     margin-top: 85px;
-    
+    border:none;
+    cursor: pointer; 
 }
 .infoQuizz{
     padding: 20px;
@@ -265,6 +265,8 @@ header h2 {
     height: 256px;
     width: 600px;
     background-color: #FFFFFF;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+
 }
 .infoQuizz input{
     padding: 15px;
@@ -287,8 +289,91 @@ header h2 {
     border: 1px solid red;
 }
 
+/*=============== Tela 3.2 - Perguntas do Quiz ====================*/
+.tela-3-2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 0px;
+    width: 80vw;
+    
+    margin: 0 auto;
+}
+.tela-3-2 h1{
+    font-size: 23px;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
 
-/* Início das classes referentes à tela 3-3 */
+.perguntasQuizz{
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    height: 825px;
+    width: 600px;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+}
+.perguntasQuizz div {
+    width: 100%;
+    margin: 0 auto;
+}
+.perguntasQuizz h1,h2{
+    font-weight: 700;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+.perguntasQuizz h2{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.perguntasQuizz input{
+    padding: 15px;
+    width: 80vw;
+    height: 46px;
+    border: 1px solid #D1D1D1;
+    box-sizing: border-box;
+    border-radius: 5px;
+    outline: 0;
+    font-weight: 400;
+    font-size: 19px;
+    margin-bottom: 5px;
+}
+.perguntasQuizz input:nth-child(9){
+    margin-bottom: 50px;
+}
+.perguntasQuizz input:nth-child(11){
+    margin-bottom: 40px;
+}
+.perguntasQuizz input::placeholder{
+    font-style: italic;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 22px;
+}
+.perguntasQuizz input:invalid{
+    border: 1px solid red;
+}
+.pergunta2-tela-3-2{
+    margin-top: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    height: 75px;
+    width: 600px;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+}
+.pergunta2-tela-3-2 div{
+    display: flex;
+    align-items: center;
+}
+.pergunta2-tela-3-2 div h1{
+    margin: 0px;
+}
+
+/* ================Início das classes referentes à tela 3-3======================*/
 .tela-3-3 {
     width: 50vw;
     margin: 0px auto;
