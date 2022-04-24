@@ -1,6 +1,13 @@
 //Variáveis globais
 let quizzesApi = [];
 let quiz_api = [];
+let tituloQuizz = "";
+let urlImage = "";
+let quantidadePerguntas = "";
+let quantidadeNiveis = "";
+
+
+
 // Tela 1 - Pegando Quizzes da API
 function buscandoQuizzes() {
     let promise = axios.get("https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes")
@@ -161,24 +168,25 @@ function validacaoTela1(){
     }else{validacao2 = true;}
 
     if(validacao1 && validacao2 ){
-        guardaDados();
+        guardaDadosTelaInfoBasicas();
     }
 }
 function proximoFormulario(){
     validacaoTela1();
 }
 
-//Dados das inforações básicas da tela 3.1
-function guardaDados(){
-    let tituloQuizz = document.querySelector(".tituloQuizz").value;
-    let urlImage = document.querySelector(".urlImage").value;
-    let quantidadePerguntas = document.querySelector(".quantidadePerguntas").value;
-    let quantidadeNiveis = document.querySelector(".quantidadeNiveis").value;
+//Dados das informações básicas da tela 3.1
+function guardaDadosTelaInfoBasicas(){
+    tituloQuizz = document.querySelector(".tituloQuizz").value;
+    urlImage = document.querySelector(".urlImage").value;
+    quantidadePerguntas = document.querySelector(".quantidadePerguntas").value;
+    quantidadeNiveis = document.querySelector(".quantidadeNiveis").value;
     console.log(tituloQuizz)
     console.log(urlImage)
     console.log(quantidadePerguntas)
     console.log(quantidadeNiveis)
-    document.querySelector('.tela-3-1').style.visibility = 'hidden';
+    const div = document.querySelector(".tela-3-1");
+    div.remove();
     perguntasQuizz();
 }
 
@@ -197,21 +205,86 @@ function infoBasica(){
     `;
     infoQuizz.innerHTML += formularioBasico;
 }
+//Validação tela 3.2
+function validacaoTela2(){
+    let input = document.querySelector(".perguntasQuizz input:invalid");
+    let inputNull = document.querySelectorAll("input");
+    let validacao3;
+    let validacao4;
+    
+    if(inputNull[0].value == "" || inputNull[1].value == "" || inputNull[2].value == "" || inputNull[3].value == "" || inputNull[4].value == "" || inputNull[5].value == ""){
+        alert("Ops! Preencha todos os campos para prosseguir! ;)");
+    }else{validacao3 = true;}
+   
+    if(input){
+        alert("Ops! Algo de errado não está certo...Coloque o mouse em cima da caixa vermelha e veja os critérios para prosseguir! ;)");
+    }else{validacao4 = true;}
+
+    if(validacao3 && validacao4 ){
+        guardaDadosTelaInfoBasicas();
+    }
+}
+
 //função para criar a Tela 3.2 - Perguntas do Quiz
 function perguntasQuizz(){
     let criaPergunta = document.querySelector('.tela-3-2');
     let perguntas =`
-        <h1>Comece pelo começo</h1>
-        <div class="infoQuizz">
-            <input class="tituloQuizz" type="text" minlength="20" maxlength="65" x-moz-errormessage="" placeholder="Título do seu quizz" >
-            <input class="urlImage" type="url" placeholder="URL da imagem do seu quizz">
-            <input class="quantidadePerguntas" type="number" min="3" placeholder="Quantidade de perguntas do quizz">
+        <h1>Crie suas perguntas</h1>
+        <div class="perguntasQuizz">
+            <div> <h1>Pergunta 1</h1> </div>
+            <input class="textoPergunta" type="text" minlength="20" x-moz-errormessage="" placeholder="Texto da pergunta" >
+            <input class="corPergunta" type="text" maxlength="8" placeholder="Cor de fundo da pergunta">
+
+            <div> <h2>Resposta correta</h2> </div>
+            <input class="respostaIncorreta1" type="number" min="3" placeholder="Resposta correta">
+            <input class="urlDaImage1" type="url" min="3" placeholder="URL da imagem">
+
+            <div> <h2>Respostas incorretas</h2> </div>
+            <input class="respostaIncorreta2" type="url" min="3" placeholder="Resposta incorreta 1">
+            <input class="urlDaImage2" type="url" min="3" placeholder="URL da imagem 1">
+
+            <input class="respostaIncorreta3" type="url" min="3" placeholder="Resposta incorreta 2">
+            <input class="urlDaImage3" type="url" min="3" placeholder="URL da imagem 2">
+
+            <input class="respostaIncorreta4" type="url" min="3" placeholder="Resposta incorreta 3">
+            <input class="urlDaImage4" type="url" min="3" placeholder="URL da imagem 3">
         </div>
-        <button onclick="proximaTela()">Prosseguir pra criar perguntas</button>
+        <div class="pergunta2-tela-3-2">
+            <div><h1>Pergunta 2</h1></div>
+            <img src="./imagens/Vector.png" alt="botao de editar" />
+        </div>
+        <div class="pergunta2-tela-3-2">
+            <div><h1>Pergunta 3</h1></div>
+            <img src="./imagens/Vector.png" alt="botao de editar" />
+        </div>
     `;
     criaPergunta.innerHTML += perguntas;
-}
+    let addPergunta = document.querySelector(".tela-3-2");
 
+    for(let i = 3; i < quantidadePerguntas; i++){
+        let perguntaAdicional = `
+        <div class="pergunta2-tela-3-2">
+            <div><h1>Pergunta ${[i+1]}</h1></div>
+            <img src="./imagens/Vector.png" alt="botao de editar" />
+        </div>
+        `;addPergunta.innerHTML += perguntaAdicional;
+    }
+    addPergunta.innerHTML += `<button onclick="enviarPerguntas()">Prosseguir pra criar níveis</button>`;
+}
+//função para caixa de texto cor
+function corText(){
+    let corText = document.querySelector(".corPergunta").value;
+    
+    console.log(corText)
+    // if(corText != "#"){
+    // }
+}
+function guardaDadosTelaPerguntas(){
+}
+function enviarPerguntas(){
+    validacaoTela2();
+    corText();
+}
 
 // Função tela33: Essa função escreve a tela 3-3 e será ativada ao final da tela 3-2
 
