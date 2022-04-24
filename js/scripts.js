@@ -85,18 +85,17 @@ function carregandoQuiz(resposta) {
   
     console.log("a resposta da vez é: " + resposta[1][0].text)
     console.log("a primeira pergunta tem quantas alternativas? " + resposta[0].length);
-let i = 0;
-let alternativa = ""
-    for (let j= 0; j<resposta[0].length;j++) {
+    let i = 0;
+    let alternativa = "" 
+  //uma solução é colocar outro loop de i aqui dentro
+        for (let j= 0; j<resposta[0].length;j++) {
         alternativa += `
         <div class="conteudo-pergunta">
             <img src="${resposta[i][j].image}" alt="">
             <h3>${resposta[i][j].text} </h3>
-        </div>
-                
-        `
+        </div>           
+    `
     }
-
 
 
     paginaDoQuizz.innerHTML = ""
@@ -118,17 +117,18 @@ let alternativa = ""
         `
      
 }
+//Esse resultado final dependerá das escolhas feitas, esse h3 colocado abaixo é ilustrativo
     paginaDoQuizz.innerHTML += `
     <div class="resultado-quizz">
             <div class="resultado-titulo">
-                <h3>Mensagem final</h3>
+                <h3>${quiz_api.levels[0].title} </h3>
             </div>
             <div class="resultado-conteudo">
                 <div class="resultado-conteudo-imagem"> 
-                    <img src="imagens/image 3.png" alt=""> 
+                    <img src="${quiz_api.levels[0].image}" alt=""> 
                 </div>
                 <div class="resultado-conteudo-texto">
-                    <h3> texto</h3>
+                    <h3> ${quiz_api.levels[0].text}</h3>
                 </div>
             </div>
             <div class="resultado-butoes">
