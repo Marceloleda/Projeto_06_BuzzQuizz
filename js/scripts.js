@@ -74,45 +74,50 @@ function carregandoQuiz(resposta) {
     console.log(quiz_api.title)
     console.log(" A quantidade de PERGUNTAS É: "+ quiz_api.questions.length);
     console.log(" A quantidade de ALTERNATIVAS É: "+ quiz_api.questions[0].answers.length);
-    //embaralhando respostas
-    let respostas0 = quiz_api.questions[0].answers;
-    let respostas1 = quiz_api.questions[1].answers;
-    let respostas2 = quiz_api.questions[2].answers;
-    respostas0.sort(embaralhar);
-    respostas1.sort(embaralhar);
-    respostas2.sort(embaralhar);
-    console.log("a resposta da vez é: " + respostas1[0].text)
+    //embaralhando respostas 
+   
+    for(let k=0;k<quiz_api.questions.length;k++) {
+       resposta[k] = quiz_api.questions[k].answers;
+       resposta[k].sort(embaralhar)
+       console.log(resposta[k])
+    }
+  //As respostas estão guardadas nas arrays respostas[i][j], onde i é a quantidade de perguntas e j é a quantidade de alternativas que essa pergunta tem
+  
+    console.log("a resposta da vez é: " + resposta[1][0].text)
+    console.log("a primeira pergunta tem quantas alternativas? " + resposta[0].length);
+let i = 0;
+let alternativa = ""
+    for (let j= 0; j<resposta[0].length;j++) {
+        alternativa += `
+        <div class="conteudo-pergunta">
+            <img src="${resposta[i][j].image}" alt="">
+            <h3>${resposta[i][j].text} </h3>
+        </div>
+                
+        `
+    }
+
+
 
     paginaDoQuizz.innerHTML = ""
 
     for(let i=0; i < quiz_api.questions.length;i++) {
-    
+
             paginaDoQuizz.innerHTML += `
         <div class="pergunta${i}">
             <div class="pergunta${i}-titulo">
                 ${quiz_api.questions[i].title} 
             </div>
+             
             <div class="imagens-perguntas">
-                <div class="conteudo-pergunta">
-                    <img src="imagens/image 3.png" alt="">
-                    <h3>${respostas0[0].text} </h3>
-                </div>
-                <div class="conteudo-pergunta">
-                    <img src="imagens/image 3.png" alt="">
-                    <h3>${respostas0[1].text} </h3>
-                </div>
-                <div class="conteudo-pergunta">
-                    <img src="imagens/image 3.png" alt="">
-                    <h3>${respostas0[2].text} </h3>
-                </div>
-                <div class="conteudo-pergunta">
-                    <img src="imagens/image 3.png" alt="">
-                    <h3>${respostas0[3].text} </h3>
-                </div>
+            ${alternativa}
+                
             </div>
+
         </div>
         `
-    }
+     
+}
     paginaDoQuizz.innerHTML += `
     <div class="resultado-quizz">
             <div class="resultado-titulo">
