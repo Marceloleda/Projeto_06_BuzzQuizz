@@ -49,9 +49,6 @@ function obtendoQuizz(meuId) {
     let promise = axios.get(requisicao);
     promise.then(carregandoQuiz);
     promise.catch(erroQuiz);
-
-    
-    
 }
 function carregandoQuiz(resposta) {
     console.log("O quiz foi carregado")
@@ -66,10 +63,19 @@ function carregandoQuiz(resposta) {
     <img src="${quiz_api.image}" alt="">
     <h3> ${quiz_api.title}</h3>
     `
-
+    
     console.log(quiz_api.title)
     console.log(" A quantidade de PERGUNTAS É: "+ quiz_api.questions.length);
     console.log(" A quantidade de ALTERNATIVAS É: "+ quiz_api.questions[0].answers.length);
+    //embaralhando respostas
+    let respostas0 = quiz_api.questions[0].answers;
+    let respostas1 = quiz_api.questions[1].answers;
+    let respostas2 = quiz_api.questions[2].answers;
+    respostas0.sort(embaralhar);
+    respostas1.sort(embaralhar);
+    respostas2.sort(embaralhar);
+    console.log("a resposta da vez é: " + respostas1[0].text)
+
     paginaDoQuizz.innerHTML = ""
 
     for(let i=0; i < quiz_api.questions.length;i++) {
@@ -82,29 +88,52 @@ function carregandoQuiz(resposta) {
             <div class="imagens-perguntas">
                 <div class="conteudo-pergunta">
                     <img src="imagens/image 3.png" alt="">
-                    <h3>alternativa </h3>
+                    <h3>${respostas0[0].text} </h3>
                 </div>
                 <div class="conteudo-pergunta">
                     <img src="imagens/image 3.png" alt="">
-                    <h3>alternativa </h3>
+                    <h3>${respostas0[1].text} </h3>
                 </div>
                 <div class="conteudo-pergunta">
                     <img src="imagens/image 3.png" alt="">
-                    <h3>alternativa </h3>
+                    <h3>${respostas0[2].text} </h3>
                 </div>
                 <div class="conteudo-pergunta">
                     <img src="imagens/image 3.png" alt="">
-                    <h3>alternativa </h3>
+                    <h3>${respostas0[3].text} </h3>
                 </div>
             </div>
         </div>
         `
-        
-        
     }
+    paginaDoQuizz.innerHTML += `
+    <div class="resultado-quizz">
+            <div class="resultado-titulo">
+                <h3>Mensagem final</h3>
+            </div>
+            <div class="resultado-conteudo">
+                <div class="resultado-conteudo-imagem"> 
+                    <img src="imagens/image 3.png" alt=""> 
+                </div>
+                <div class="resultado-conteudo-texto">
+                    <h3> texto</h3>
+                </div>
+            </div>
+            <div class="resultado-butoes">
+                <button class="reiniciar-quizz"> Reiniciar Quizz</button>
+                <button onclick="reiniciar()" class="voltar-home"> Voltar para Home</button>
+             </div>
+        </div>
+    `
 }
 function erroQuiz() {
     console.log("O quiz NÃO foi carregado")
+}
+function reiniciar(){
+    window.location.reload()
+}
+function embaralhar() {
+    return Math.random() - 0.5;    
 }
 
 
@@ -243,7 +272,7 @@ function tela33() {
 function finalizarQuizz() {
 
     
-    
+
     let titulo1 = document.getElementById("nivel-1-titulo").value
     let porcentagem1 = document.getElementById("nivel-1-porcentagem").value
     let url1 = document.getElementById("nivel-1-url").value
