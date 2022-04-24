@@ -165,11 +165,7 @@ header h2 {
     flex-wrap: wrap;
     justify-content: space-between;
 }
-<<<<<<< HEAD
 .-tela-3-2 {
-=======
-.pergunta1 {
->>>>>>> e1d3efec8bdb073378dabf81295bd2893c4fbb06
     margin-top: 100px;
 }
 .pergunta2 {
@@ -281,7 +277,7 @@ header h2 {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    height: 256px;
+    /* height: 256px; */
     width: 600px;
     background-color: #FFFFFF;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
@@ -297,6 +293,8 @@ header h2 {
     outline: 0;
     font-weight: 400;
     font-size: 19px;
+    margin-bottom: 8px;
+
 }
 .infoQuizz input::placeholder{
     font-style: italic;
@@ -328,7 +326,8 @@ header h2 {
     padding: 20px;
     display: flex;
     flex-wrap: wrap;
-    height: 825px;
+    justify-content: center;
+    /* height: 825px; */
     width: 600px;
     background-color: #FFFFFF;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
@@ -390,6 +389,20 @@ header h2 {
 }
 .pergunta2-tela-3-2 div h1{
     margin: 0px;
+}
+.tela-3-2 button{
+    background-color: #EC362D;
+    color: #FFF5F4;
+    font-size: 21px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    height: 54px;
+    margin-top: 80px;
+    margin-bottom: 80px;
+    border:none;
+    cursor: pointer; 
 }
 
 /* ================Início das classes referentes à tela 3-3======================*/
