@@ -459,7 +459,7 @@ header h2 {
     font-size: 19px;
     line-height: 22px;
 }
-.perguntasQuizz input:invalid{
+.perguntasQuizz input:invalid:nth-child(n+1):nth-child(-n+9){
     border: 1px solid red;
 }
 .pergunta2-tela-3-2{
@@ -493,6 +493,11 @@ header h2 {
     margin-bottom: 80px;
     border:none;
     cursor: pointer; 
+}
+.colocarCor {
+    display: flex;
+    width: 80px;
+    height: 46px;
 }
 
 /* ================Início das classes referentes à tela 3-3======================*/
