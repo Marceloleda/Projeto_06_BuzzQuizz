@@ -245,16 +245,15 @@ function perguntasQuizz(){
         <div class="perguntasQuizz">
             <div> <h1>Pergunta 1</h1> </div>
             <input class="textoPergunta" type="text" minlength="20" x-moz-errormessage="" placeholder="Texto da pergunta" >
-            <div class="colocaCor">
-                <input class="corPergunta" type="color" maxlength="8" placeholder="Cor de fundo da pergunta">
-            </div>
+            <input class="corPergunta" type="text" pattern="#[0-9a-fA-F]{4,8}" maxlength="8" placeholder="Digite uma cor de fundo em hexadecimal (comece com #)">
 
             <div> <h2>Resposta correta</h2> </div>
-            <input class="respostaIncorreta1" type="text" minlength="3" placeholder="Resposta correta">
+            <input class="respostaIncorreta1" type="text" minlength="1" placeholder="Resposta correta">
             <input class="urlDaImage1" type="url" placeholder="URL da imagem">
+            
 
             <div> <h2>Respostas incorretas</h2> </div>
-            <input class="respostaIncorreta2" type="text" minlength="3" placeholder="Resposta incorreta 1">
+            <input class="respostaIncorreta2" type="text" minlength="1" placeholder="Resposta incorreta 1">
             <input class="urlDaImage2" type="url" placeholder="URL da imagem 1">
 
             <input class="respostaIncorreta3" type="text" placeholder="Resposta incorreta 2">
@@ -272,6 +271,7 @@ function perguntasQuizz(){
             <img src="./imagens/Vector.png" alt="botao de editar" />
         </div>
     `;
+
     criaPergunta.innerHTML += perguntas;
     let addPergunta = document.querySelector(".tela-3-2");
 
@@ -286,6 +286,7 @@ function perguntasQuizz(){
     }
     addPergunta.innerHTML += `<button onclick="validacaoTela2()">Prosseguir pra criar níveis</button>`;
 }
+
 // ============Guardar respostas do formulario de perguntas da tela 3.2==========================================================
 
 function guardaDadosTelaPerguntas(){
