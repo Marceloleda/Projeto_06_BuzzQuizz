@@ -264,11 +264,11 @@ function perguntasQuizz(){
         </div>
         <div class="pergunta2-tela-3-2">
             <div><h1>Pergunta 2</h1></div>
-            <img src="./imagens/Vector.png" alt="botao de editar" />
+            <img onclick="inserePerguntas(this)" src="./imagens/Vector.png" alt="botao de editar" />
         </div>
         <div class="pergunta2-tela-3-2">
             <div><h1>Pergunta 3</h1></div>
-            <img src="./imagens/Vector.png" alt="botao de editar" />
+            <img onclick="inserePerguntas(this)" src="./imagens/Vector.png" alt="botao de editar" />
         </div>
     `;
 
@@ -279,12 +279,43 @@ function perguntasQuizz(){
         let perguntaAdicional = `
         <div class="pergunta2-tela-3-2">
             <div><h1>Pergunta ${[i+1]}</h1></div>
-            <img src="./imagens/Vector.png" alt="botao de editar" />
+            <img class="editaPerguntas" onclick="inserePerguntas(this)" src="./imagens/Vector.png" alt="botao de editar" />
         </div>
         `;
         addPergunta.innerHTML += perguntaAdicional;
     }
     addPergunta.innerHTML += `<button onclick="validacaoTela2()">Prosseguir pra criar níveis</button>`;
+}
+//============Incrementar lista de perguntas quando clicado no icone ===========================================================
+function inserePerguntas(insere){
+    insere.classList.toggle("click");
+    let contemClick = insere.classList.contains("click");
+    if(contemClick == true){
+        let perguntas =`
+        <div class="perguntasQuizz">
+            <input class="textoPergunta" type="text" minlength="20" x-moz-errormessage="" placeholder="Texto da pergunta" >
+            <input class="corPergunta" type="text" pattern="#[0-9a-fA-F]{4,8}" maxlength="8" placeholder="Digite uma cor de fundo em hexadecimal (comece com #)">
+
+            <div> <h2>Resposta correta</h2> </div>
+            <input class="respostaIncorreta1" type="text" minlength="1" placeholder="Resposta correta">
+            <input class="urlDaImage1" type="url" placeholder="URL da imagem">
+            
+
+            <div> <h2>Respostas incorretas</h2> </div>
+            <input class="respostaIncorreta2" type="text" minlength="1" placeholder="Resposta incorreta 1">
+            <input class="urlDaImage2" type="url" placeholder="URL da imagem 1">
+
+            <input class="respostaIncorreta3" type="text" placeholder="Resposta incorreta 2">
+            <input class="urlDaImage3" type="url" placeholder="URL da imagem 2">
+
+            <input class="respostaIncorreta4" type="text" placeholder="Resposta incorreta 3">
+            <input class="urlDaImage4" type="url" placeholder="URL da imagem 3">
+        </div>
+        `;    
+        insere.innerHTML += perguntas;
+
+    }
+    console.log (contemClick);
 }
 
 // ============Guardar respostas do formulario de perguntas da tela 3.2==========================================================
@@ -317,14 +348,7 @@ function guardaDadosTelaPerguntas(){
     console.log(urlDaImage4)
 
 }
-//função para caixa de texto cor
-// function corText(){
-//     let corText = document.querySelector(".corPergunta").value;
-    
-//     console.log(corText)
-//     // if(corText != "#"){
-//     // }
-// }
+
 function enviarPerguntas(){
     validacaoTela2();
 }
