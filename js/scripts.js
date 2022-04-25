@@ -93,24 +93,24 @@ function carregandoQuiz(resposta) {
     console.log("a resposta da vez é: " + resposta[1][0].text)
     console.log("a primeira pergunta tem quantas alternativas? " + resposta[0].length);
    
-    let alternativa = "" 
-  //uma solução é colocar outro loop de i aqui dentro
-      let i=0; 
-       
+
+    function setAternativas(questionIndex) {
+        let alternativa = "";
         for (let j= 0; j<resposta[0].length;j++) {
             
-        alternativa += `
-        <div class="conteudo-pergunta">
-            <img src="${resposta[i][j].image}" alt="">
-            <h3>${resposta[i][j].text} </h3>
-        </div>           
-    `
-    } 
-
-
+            alternativa += `
+            <div class="conteudo-pergunta">
+                <img src="${resposta[questionIndex][j].image}" alt="">
+                <h3>${resposta[questionIndex][j].text} </h3>
+            </div>           
+        `
+       
+    } return alternativa
+    }
     paginaDoQuizz.innerHTML = ""
 
     for(let i=0; i < quiz_api.questions.length;i++) {
+        const alternativas = setAternativas(i)
 
             paginaDoQuizz.innerHTML += `
         <div class="pergunta${i}">
@@ -119,7 +119,7 @@ function carregandoQuiz(resposta) {
             </div>
              
             <div class="imagens-perguntas">
-            ${alternativa}
+            ${alternativas}
                 
             </div>
 
@@ -164,8 +164,8 @@ function criarQuizz() {
     removendotela.classList.add("removendo-tela");
     let removendoQuizzes = document.querySelector(".quizzes-api");
     removendoQuizzes.classList.add("removendo-tela");
-
-   infoBasica(); 
+tela33()
+   //infoBasica(); 
 }
 //Validação para proxima tela 3.2
 function validacaoTela1(){
@@ -336,6 +336,29 @@ function enviarPerguntas(){
 function tela33() {
     let escrevendotela = document.querySelector(".tela-3-3")
     escrevendotela.classList.remove("removendo-tela")
+    
+    for(let i=o; i<quantidadeNiveis;i++) {
+        repeticao = `
+        <div class="nivel-2">
+    <div class="nivel-2-cabecalho">
+        <h4>Nível 2</h4>
+        <img class="imagem-nivel-2" src="imagens/Vector.png" alt="">
+    </div>
+
+    <input id="nivel-2-titulo" placeholder="Título do nível" type="text" value=""> <br> <br>
+    <input id="nivel-2-porcentagem" placeholder="% de acerto mínima" type="text" value="">  <br> <br>
+    <input id="nivel-2-url" placeholder="URL da imagem do nível" type="text" value="">  <br> <br>
+    <input id="nivel-2-descricao" placeholder="Descrição do nível" type="text" value="">
+
+</div>
+        `
+    }
+
+
+
+    
+    
+    
     escrevendotela.innerHTML = `<div class="titulo-tela-3-3">
     <h3>Agora, decida os níveis</h3>
 </div>
@@ -403,11 +426,26 @@ function finalizarQuizz() {
     
 
 
-    console.log(levels)
     console.log(porcentagem1)
     console.log(porcentagem2)
     console.log(porcentagem3)
     quantidadeNiveis = 2;
+    
+         
+            
+
+
+
+
+
+
+
+
+            if(quantidadeNiveis == 2) {
+                let removendoNivel3 = document.querySelector(".nivel-3");
+                removendoNivel3.classList.add("removendo-tela")
+            }
+
 
     if(quantidadeNiveis == 2) {
         if((titulo1.length > 10) || (titulo2.length > 10) )  {
@@ -419,13 +457,15 @@ function finalizarQuizz() {
         } else if((descricao1.length < 30) ||(descricao2.length < 30)) {
             alert("A sua descrição deve conter mais que 30 caracteres")
         } else if((porcentagem1 == 0) || (porcentagem2 == 0)) { 
-            alert("finalizado") 
+            alert("Enviando level2");
+                console.log("o nível é: " + levels)
             } else {
                 alert("Pelo menos uma das porcentagens mínimas deve ser zero")
             }
-    }
-   
 
+     
+    }
+    
 
     if(quantidadeNiveis == 3) {
         if((titulo1.length > 10) || (titulo2.length > 10) || (titulo3.length > 10) ) {
@@ -467,6 +507,7 @@ function tela34() {
 }
  
 function enviandoQuizz() {
+    //Fazer dois o
    /*let levels = []
     if(quantidadeNiveis == 2) {
          levels = [
@@ -492,17 +533,17 @@ console.log("A quantidade de levels é: " + levels);
         image: urlImage,
         questions: [
             {
-                title: "Título da pergunta 1",
-                color: "#123456",
+                title: textoPergunta,
+                color: corPergunta,
                 answers: [
                     {
-                        text: "Texto da resposta 1",
-                        image: "https://http.cat/411.jpg",
-                        isCorrectAnswer: true
+                        text: respostaIncorreta1,
+                        image: urlDaImage1,
+                        isCorrectAnswer: false
                     },
                     {
-                        text: "Texto da resposta 2",
-                        image: "https://http.cat/412.jpg",
+                        text: respostaIncorreta2,
+                        image: urlDaImage2,
                         isCorrectAnswer: false
                     }
                 ]
