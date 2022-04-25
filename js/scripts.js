@@ -63,9 +63,6 @@ function obtendoQuizz(meuId) {
     let promise = axios.get(requisicao);
     promise.then(carregandoQuiz);
     promise.catch(erroQuiz);
-
-    
-    
 }
 function carregandoQuiz(resposta) {
     console.log("O quiz foi carregado")
@@ -80,45 +77,82 @@ function carregandoQuiz(resposta) {
     <img src="${quiz_api.image}" alt="">
     <h3> ${quiz_api.title}</h3>
     `
-
+    
     console.log(quiz_api.title)
     console.log(" A quantidade de PERGUNTAS É: "+ quiz_api.questions.length);
     console.log(" A quantidade de ALTERNATIVAS É: "+ quiz_api.questions[0].answers.length);
+    //embaralhando respostas 
+   
+    for(let k=0;k<quiz_api.questions.length;k++) {
+       resposta[k] = quiz_api.questions[k].answers;
+       resposta[k].sort(embaralhar)
+       console.log(resposta[k])
+    }
+  //As respostas estão guardadas nas arrays respostas[i][j], onde i é a quantidade de perguntas e j é a quantidade de alternativas que essa pergunta tem
+  
+    console.log("a resposta da vez é: " + resposta[1][0].text)
+    console.log("a primeira pergunta tem quantas alternativas? " + resposta[0].length);
+    let i = 0;
+    let alternativa = "" 
+  //uma solução é colocar outro loop de i aqui dentro
+        for (let j= 0; j<resposta[0].length;j++) {
+        alternativa += `
+        <div class="conteudo-pergunta">
+            <img src="${resposta[i][j].image}" alt="">
+            <h3>${resposta[i][j].text} </h3>
+        </div>           
+    `
+    }
+
+
     paginaDoQuizz.innerHTML = ""
 
     for(let i=0; i < quiz_api.questions.length;i++) {
-    
+
             paginaDoQuizz.innerHTML += `
         <div class="pergunta${i}">
             <div class="pergunta${i}-titulo">
                 ${quiz_api.questions[i].title} 
             </div>
+             
             <div class="imagens-perguntas">
-                <div class="conteudo-pergunta">
-                    <img src="imagens/image 3.png" alt="">
-                    <h3>alternativa </h3>
-                </div>
-                <div class="conteudo-pergunta">
-                    <img src="imagens/image 3.png" alt="">
-                    <h3>alternativa </h3>
-                </div>
-                <div class="conteudo-pergunta">
-                    <img src="imagens/image 3.png" alt="">
-                    <h3>alternativa </h3>
-                </div>
-                <div class="conteudo-pergunta">
-                    <img src="imagens/image 3.png" alt="">
-                    <h3>alternativa </h3>
-                </div>
+            ${alternativa}
+                
             </div>
+
         </div>
         `
-        
-        
-    }
+     
+}
+//Esse resultado final dependerá das escolhas feitas, esse h3 colocado abaixo é ilustrativo
+    paginaDoQuizz.innerHTML += `
+    <div class="resultado-quizz">
+            <div class="resultado-titulo">
+                <h3>${quiz_api.levels[0].title} </h3>
+            </div>
+            <div class="resultado-conteudo">
+                <div class="resultado-conteudo-imagem"> 
+                    <img src="${quiz_api.levels[0].image}" alt=""> 
+                </div>
+                <div class="resultado-conteudo-texto">
+                    <h3> ${quiz_api.levels[0].text}</h3>
+                </div>
+            </div>
+            <div class="resultado-butoes">
+                <button class="reiniciar-quizz"> Reiniciar Quizz</button>
+                <button onclick="reiniciar()" class="voltar-home"> Voltar para Home</button>
+             </div>
+        </div>
+    `
 }
 function erroQuiz() {
     console.log("O quiz NÃO foi carregado")
+}
+function reiniciar(){
+    window.location.reload()
+}
+function embaralhar() {
+    return Math.random() - 0.5;    
 }
 
 
@@ -353,7 +387,7 @@ function tela33() {
 function finalizarQuizz() {
 
     
-    
+
     let titulo1 = document.getElementById("nivel-1-titulo").value
     let porcentagem1 = document.getElementById("nivel-1-porcentagem").value
     let url1 = document.getElementById("nivel-1-url").value
