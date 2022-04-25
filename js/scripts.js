@@ -85,17 +85,20 @@ function carregandoQuiz(resposta) {
   
     console.log("a resposta da vez é: " + resposta[1][0].text)
     console.log("a primeira pergunta tem quantas alternativas? " + resposta[0].length);
-    let i = 0;
+   
     let alternativa = "" 
   //uma solução é colocar outro loop de i aqui dentro
+      let i=0; 
+       
         for (let j= 0; j<resposta[0].length;j++) {
+            
         alternativa += `
         <div class="conteudo-pergunta">
             <img src="${resposta[i][j].image}" alt="">
             <h3>${resposta[i][j].text} </h3>
         </div>           
     `
-    }
+    } 
 
 
     paginaDoQuizz.innerHTML = ""
@@ -115,7 +118,6 @@ function carregandoQuiz(resposta) {
 
         </div>
         `
-     
 }
 //Esse resultado final dependerá das escolhas feitas, esse h3 colocado abaixo é ilustrativo
     paginaDoQuizz.innerHTML += `
@@ -348,9 +350,6 @@ function tela33() {
 // Função finalizarQuizz: Essa função será ativada ao final da tela 3-3, quando clicarmos no botão de finalizar Quizz
 
 function finalizarQuizz() {
-
-    
-
     let titulo1 = document.getElementById("nivel-1-titulo").value
     let porcentagem1 = document.getElementById("nivel-1-porcentagem").value
     let url1 = document.getElementById("nivel-1-url").value
@@ -364,12 +363,16 @@ function finalizarQuizz() {
     let url3 = document.getElementById("nivel-3-url").value
     let descricao3 = document.getElementById("nivel-3-descricao").value
     
+
+
+    console.log(levels)
     console.log(porcentagem1)
     console.log(porcentagem2)
     console.log(porcentagem3)
+    quantidadeNiveis = 2;
 
-    if(niveis == 2) {
-        if((titulo1.length > 10) || (titulo2.length > 10) ) {
+    if(quantidadeNiveis == 2) {
+        if((titulo1.length > 10) || (titulo2.length > 10) )  {
             alert("O título tem mais que 10 caracteres. Preencha novamente")
         } else if((porcentagem1 <0) || (porcentagem1 > 100) || (porcentagem2 <0) || (porcentagem2 > 100)) {
             alert("A porcentagem deve ser um número entre 0 e 100. Preencha novamente")
@@ -377,12 +380,16 @@ function finalizarQuizz() {
             alert("Você não colocou um formato de ULR válido. Inicie com 'http://'")
         } else if((descricao1.length < 30) ||(descricao2.length < 30)) {
             alert("A sua descrição deve conter mais que 30 caracteres")
-        } else if((porcentagem1 !==0) || (porcentagem2 !==0)) { 
-        alert("Pelo menos uma das porcentagens mínimas deve ser zero") 
-        }
+        } else if((porcentagem1 == 0) || (porcentagem2 == 0)) { 
+            alert("finalizado") 
+            } else {
+                alert("Pelo menos uma das porcentagens mínimas deve ser zero")
+            }
     }
+   
 
-    if(niveis == 3) {
+
+    if(quantidadeNiveis == 3) {
         if((titulo1.length > 10) || (titulo2.length > 10) || (titulo3.length > 10) ) {
             alert("O título tem mais que 10 caracteres. Preencha novamente")
         } else if((porcentagem1 <0) || (porcentagem1 > 100) || (porcentagem2 <0) || (porcentagem2 > 100) || (porcentagem3 <0) || (porcentagem3 > 100)) {
@@ -396,10 +403,10 @@ function finalizarQuizz() {
         } else {
             alert("Pelo menos uma das porcentagens mínimas deve ser zero")
         }
-    }
     
+    }
 }
-
+//enviandoQuizz();
 // Final da função finalizar Quizz
 
 // Função tela 3-4
@@ -421,4 +428,83 @@ function tela34() {
     `
 }
  
+function enviandoQuizz() {
+   /*let levels = []
+    if(quantidadeNiveis == 2) {
+         levels = [
+            {
+                title: titulo1,
+                image: url1,
+                text: descricao1,
+                minValue: porcentagem1
+            },
+            {
+                title: titulo2,
+                image: url2,
+                text: descricao2,
+                minValue: porcentagem2
+            }
+            
+            ]
+    }*/
+console.log("A quantidade de levels é: " + levels);
+
+    /*let novoQuizz = {
+        title: tituloQuizz,
+        image: urlImage,
+        questions: [
+            {
+                title: "Título da pergunta 1",
+                color: "#123456",
+                answers: [
+                    {
+                        text: "Texto da resposta 1",
+                        image: "https://http.cat/411.jpg",
+                        isCorrectAnswer: true
+                    },
+                    {
+                        text: "Texto da resposta 2",
+                        image: "https://http.cat/412.jpg",
+                        isCorrectAnswer: false
+                    }
+                ]
+            },
+            {
+                title: "Título da pergunta 2",
+                color: "#123456",
+                answers: [
+                    {
+                        text: "Texto da resposta 1",
+                        image: "https://http.cat/411.jpg",
+                        isCorrectAnswer: true
+                    },
+                    {
+                        text: "Texto da resposta 2",
+                        image: "https://http.cat/412.jpg",
+                        isCorrectAnswer: false
+                    }
+                ]
+            },
+            {
+                title: "Título da pergunta 3",
+                color: "#123456",
+                answers: [
+                    {
+                        text: "Texto da resposta 1",
+                        image: "https://http.cat/411.jpg",
+                        isCorrectAnswer: true
+                    },
+                    {
+                        text: "Texto da resposta 2",
+                        image: "https://http.cat/412.jpg",
+                        isCorrectAnswer: false
+                    }
+                ]
+            }
+        ],
+        levels: levels
+    }
+       */ 
+}
+
 buscandoQuizzes();
