@@ -251,11 +251,22 @@ function perguntasQuizz(){
             <div> <h2>Resposta correta</h2> </div>
             <input class="respostaCorreta" type="text" minlength="1" placeholder="Resposta correta">
             <input class="urlDaImage1" type="url" placeholder="URL da imagem">
+<<<<<<< HEAD
             <div> <h2>Respostas incorretas</h2> </div>
             <input class="respostaIncorreta1" type="text" minlength="1" placeholder="Resposta incorreta 1">
             <input class="urlDaImage2" type="url" placeholder="URL da imagem 1">
             <input class="respostaIncorreta2" type="text" placeholder="Resposta incorreta 2">
             <input class="urlDaImage3" type="url" placeholder="URL da imagem 2">
+=======
+
+            <div> <h2>Respostas incorretas</h2> </div>
+            <input class="respostaIncorreta1" type="text" minlength="1" placeholder="Resposta incorreta 1">
+            <input class="urlDaImage2" type="url" placeholder="URL da imagem 1">
+
+            <input class="respostaIncorreta2" type="text" placeholder="Resposta incorreta 2">
+            <input class="urlDaImage3" type="url" placeholder="URL da imagem 2">
+
+>>>>>>> 43109c695a31a841f4414ec9f972dac6475960d7
             <input class="respostaIncorreta3" type="text" placeholder="Resposta incorreta 3">
             <input class="urlDaImage4" type="url" placeholder="URL da imagem 3">
         </div>
@@ -266,6 +277,10 @@ function perguntasQuizz(){
         <div class="perguntasQuizz" onclick="addRemove(this)">
             <input class="textoPergunta2" type="text" minlength="20" x-moz-errormessage="" placeholder="Texto da pergunta" >
             <input class="corPergunta2" type="text" pattern="#[0-9a-fA-F]{4,8}" maxlength="8" placeholder="Digite uma cor de fundo em hexadecimal (comece com #)">
+<<<<<<< HEAD
+=======
+
+>>>>>>> 43109c695a31a841f4414ec9f972dac6475960d7
             <div> <h2>Resposta correta</h2> </div>
             <input class="respostaCorreta2" type="text" minlength="1" placeholder="Resposta correta">
             <input class="urlDaImage12" type="url" placeholder="URL da imagem">
@@ -273,8 +288,15 @@ function perguntasQuizz(){
             <div> <h2>Respostas incorretas</h2> </div>
             <input class="respostaIncorreta12" type="text" minlength="1" placeholder="Resposta incorreta 1">
             <input class="urlDaImage22" type="url" placeholder="URL da imagem 1">
+<<<<<<< HEAD
             <input class="respostaIncorreta22" type="text" placeholder="Resposta incorreta 2">
             <input class="urlDaImage32" type="url" placeholder="URL da imagem 2">
+=======
+
+            <input class="respostaIncorreta22" type="text" placeholder="Resposta incorreta 2">
+            <input class="urlDaImage32" type="url" placeholder="URL da imagem 2">
+
+>>>>>>> 43109c695a31a841f4414ec9f972dac6475960d7
             <input class="respostaIncorreta32" type="text" placeholder="Resposta incorreta 3">
             <input class="urlDaImage42" type="url" placeholder="URL da imagem 3">
         </div>
@@ -285,6 +307,10 @@ function perguntasQuizz(){
         <div class="perguntasQuizz" onclick="addRemove(this)">
             <input class="textoPergunta3" type="text" minlength="20" x-moz-errormessage="" placeholder="Texto da pergunta" >
             <input class="corPergunta3" type="text" pattern="#[0-9a-fA-F]{4,8}" maxlength="8" placeholder="Digite uma cor de fundo em hexadecimal (comece com #)">
+<<<<<<< HEAD
+=======
+
+>>>>>>> 43109c695a31a841f4414ec9f972dac6475960d7
             <div> <h2>Resposta correta</h2> </div>
             <input class="respostaCorreta3" type="text" minlength="1" placeholder="Resposta correta">
             <input class="urlDaImage13" type="url" placeholder="URL da imagem">
@@ -292,8 +318,15 @@ function perguntasQuizz(){
             <div> <h2>Respostas incorretas</h2> </div>
             <input class="respostaIncorreta13" type="text" minlength="1" placeholder="Resposta incorreta 1">
             <input class="urlDaImage23" type="url" placeholder="URL da imagem 1">
+<<<<<<< HEAD
             <input class="respostaIncorreta23" type="text" placeholder="Resposta incorreta 2">
             <input class="urlDaImage33" type="url" placeholder="URL da imagem 2">
+=======
+
+            <input class="respostaIncorreta23" type="text" placeholder="Resposta incorreta 2">
+            <input class="urlDaImage33" type="url" placeholder="URL da imagem 2">
+
+>>>>>>> 43109c695a31a841f4414ec9f972dac6475960d7
             <input class="respostaIncorreta33" type="text" placeholder="Resposta incorreta 3">
             <input class="urlDaImage43" type="url" placeholder="URL da imagem 3">
         </div>
@@ -312,6 +345,10 @@ function perguntasQuizz(){
         <div class="perguntasQuizz"  onclick="addRemove(this)">
             <input class="textoPergunta${i}" type="text" minlength="20" x-moz-errormessage="" placeholder="Texto da pergunta" >
             <input class="corPergunta${i}" type="text" pattern="#[0-9a-fA-F]{4,8}" maxlength="8" placeholder="Digite uma cor de fundo em hexadecimal (comece com #)">
+<<<<<<< HEAD
+=======
+
+>>>>>>> 43109c695a31a841f4414ec9f972dac6475960d7
             <div> <h2>Resposta correta</h2> </div>
             <input class="respostaCorreta${i}" type="text" minlength="1" placeholder="Resposta correta">
             <input class="urlDaImage1${i}" type="url" placeholder="URL da imagem">
@@ -319,8 +356,15 @@ function perguntasQuizz(){
             <div> <h2>Respostas incorretas</h2> </div>
             <input class="respostaIncorreta1${i}" type="text" minlength="1" placeholder="Resposta incorreta 1">
             <input class="urlDaImage2${i}" type="url" placeholder="URL da imagem 1">
+<<<<<<< HEAD
             <input class="respostaIncorreta2${i}" type="text" placeholder="Resposta incorreta 2">
             <input class="urlDaImage3${i}" type="url" placeholder="URL da imagem 2">
+=======
+
+            <input class="respostaIncorreta2${i}" type="text" placeholder="Resposta incorreta 2">
+            <input class="urlDaImage3${i}" type="url" placeholder="URL da imagem 2">
+
+>>>>>>> 43109c695a31a841f4414ec9f972dac6475960d7
             <input class="respostaIncorreta3${i}" type="text" placeholder="Resposta incorreta 3">
             <input class="urlDaImage4${i}" type="url" placeholder="URL da imagem 3">
         </div>

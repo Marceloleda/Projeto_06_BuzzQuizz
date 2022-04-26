@@ -107,6 +107,9 @@ header h2 {
 .removendo-tela {
     display: none;
 }
+.esconde{
+    display: hidde;
+}
 /* Final das classes referentes ao cabeçalho */
 
 /* Tela 1: Renderizando a lista de Quizzes*/
@@ -421,7 +424,16 @@ header h2 {
     font-weight: 700;
     margin-bottom: 30px;
 }
-
+.perguntasQuizz {
+    opacity: 1;
+    transition: opacity .5s linear;
+  }
+  
+  .perguntasQuizz.hide {
+    opacity: 0;
+    pointer-events: none;
+  }
+  
 .perguntasQuizz{
     padding: 20px;
     display: flex;
@@ -457,11 +469,11 @@ header h2 {
     font-size: 19px;
     margin-bottom: 5px;
 }
-.perguntasQuizz input:nth-child(9){
-    margin-bottom: 50px;
+.perguntasQuizz input:nth-child(8){
+    margin-bottom: 30px;
 }
-.perguntasQuizz input:nth-child(11){
-    margin-bottom: 40px;
+.perguntasQuizz input:nth-child(10){
+    margin-bottom: 30px;
 }
 .perguntasQuizz input::placeholder{
     font-style: italic;
@@ -478,7 +490,6 @@ header h2 {
     align-items: center;
     justify-content: space-between;
     padding: 20px;
-    height: 75px;
     width: 600px;
     background-color: #FFFFFF;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
@@ -510,6 +521,12 @@ header h2 {
     margin-bottom: 80px;
     border:none;
     cursor: pointer; 
+}
+.respostaIncorreta3{
+    margin-top:30px;
+}
+.respostaIncorreta2{
+    margin-top: 30px;
 }
 .colocarCor {
     display: flex;
