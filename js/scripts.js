@@ -161,11 +161,16 @@ function carregandoQuiz(resposta) {
                 </div>
             </div>
             <div class="resultado-butoes">
-                <button class="reiniciar-quizz"> Reiniciar Quizz</button>
+                <button class="reiniciar-quizz" onclick="rolarCima()" > Reiniciar Quizz</button>
                 <button onclick="reiniciar()" class="voltar-home"> Voltar para Home</button>
              </div>
         </div>
     `
+}
+function rolarCima(){
+    window.scrollTo(0, 0)
+    const reload = document.queryCommandValue('.criar-quizz');
+    reload.location.reload();
 }
 function erroQuiz() {
     console.log("O quiz NÃO foi carregado")

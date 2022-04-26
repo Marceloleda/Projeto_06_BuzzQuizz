@@ -305,7 +305,7 @@ header h2 {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 260.38px;
+    width: 260px;
     height: 52px;
     left: 591px;
     top: 953px;
@@ -427,13 +427,12 @@ header h2 {
 .perguntasQuizz {
     opacity: 1;
     transition: opacity .5s linear;
-  }
-  
-  .perguntasQuizz.hide {
+}
+einiciar-quizz
+.perguntasQuizz.hide {
     opacity: 0;
     pointer-events: none;
-  }
-  
+}
 .perguntasQuizz{
     padding: 20px;
     display: flex;
