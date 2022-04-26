@@ -348,6 +348,7 @@ header h2 {
     font-size: 23px;
     font-weight: 700;
     margin-bottom: 30px;
+    display: flex;
 }
 .tela-3-1 button{
     background-color: #EC362D;
@@ -405,6 +406,15 @@ header h2 {
     width: 80vw;
     
     margin: 0 auto;
+}
+.inside {
+    width: 375px;
+    height: 74px;
+    display: flex;
+    justify-content: space-between;
+    background-color: #FFFFFF;
+    align-items: center;
+    margin-bottom: 28px;
 }
 .tela-3-2 h1{
     font-size: 23px;
@@ -529,6 +539,7 @@ header h2 {
     height: 316px;
     padding: 10px;
     background-color: white;
+    border:solid;
 }
 .nivel-1 h4 {
     margin-bottom: 12px;
@@ -542,7 +553,7 @@ header h2 {
     color: #000000;
     
 }
-.nivel-2 h4 {
+.nivel h4 {
     margin-bottom: 12px;
     font-family: 'Roboto';
     font-style: normal;
@@ -563,8 +574,7 @@ header h2 {
     line-height: 23px;
     display: flex;
     align-items: center;
-    color: #000000;
-    
+    color: #000000;  
 }
 .tela-3-3 input {
     background: #FFFFFF;
@@ -587,13 +597,13 @@ header h2 {
     
 }
 
-.nivel-2 {
+.nivel {
     margin-top:24px;
     padding: 10px;
     background-color: white;
     
 }
-.nivel-2-cabecalho {
+.nivel-cabecalho {
     display: flex;
     justify-content: space-between;
     align-items: center;
