@@ -5,15 +5,15 @@ let tituloQuizz = "";
 let urlImage = "";
 let quantidadePerguntas = "";
 let quantidadeNiveis = "";
-// let textoPergunta = document.querySelector(".textoPergunta").value;
+// tela 3.2 formulario 
 let corPergunta = ""; 
-let respostaIncorreta1 = "";
+let respostaCorreta = "";
 let urlDaImage1 = ""; 
-let respostaIncorreta2 = "";
+let respostaIncorreta1 = "";
 let urlDaImage2 = ""; 
-let respostaIncorreta3 = "";
+let respostaIncorreta2 = "";
 let urlDaImage3 = ""; 
-let respostaIncorreta4 = "";
+let respostaIncorreta3 = "";
 let urlDaImage4 = ""; 
 // Tela 1 - Pegando Quizzes da API
 function buscandoQuizzes() {
@@ -164,8 +164,9 @@ function criarQuizz() {
     removendotela.classList.add("removendo-tela");
     let removendoQuizzes = document.querySelector(".quizzes-api");
     removendoQuizzes.classList.add("removendo-tela");
-tela33()
-   //infoBasica(); 
+// tela33()
+   infoBasica(); 
+//    perguntasQuizz()
 }
 //Validação para proxima tela 3.2
 function validacaoTela1(){
@@ -250,27 +251,62 @@ function perguntasQuizz(){
             <input class="corPergunta" type="text" pattern="#[0-9a-fA-F]{4,8}" maxlength="8" placeholder="Digite uma cor de fundo em hexadecimal (comece com #)">
 
             <div> <h2>Resposta correta</h2> </div>
-            <input class="respostaIncorreta1" type="text" minlength="1" placeholder="Resposta correta">
+            <input class="respostaCorreta" type="text" minlength="1" placeholder="Resposta correta">
             <input class="urlDaImage1" type="url" placeholder="URL da imagem">
-            
 
             <div> <h2>Respostas incorretas</h2> </div>
-            <input class="respostaIncorreta2" type="text" minlength="1" placeholder="Resposta incorreta 1">
+            <input class="respostaIncorreta1" type="text" minlength="1" placeholder="Resposta incorreta 1">
             <input class="urlDaImage2" type="url" placeholder="URL da imagem 1">
 
-            <input class="respostaIncorreta3" type="text" placeholder="Resposta incorreta 2">
+            <input class="respostaIncorreta2" type="text" placeholder="Resposta incorreta 2">
             <input class="urlDaImage3" type="url" placeholder="URL da imagem 2">
 
-            <input class="respostaIncorreta4" type="text" placeholder="Resposta incorreta 3">
+            <input class="respostaIncorreta3" type="text" placeholder="Resposta incorreta 3">
             <input class="urlDaImage4" type="url" placeholder="URL da imagem 3">
         </div>
-        <div class="pergunta2-tela-3-2">
+        <div class="pergunta2-tela-3-2" onclick="adcionaRemove(this)" >
             <div><h1>Pergunta 2</h1></div>
             <img onclick="inserePerguntas(this)" src="./imagens/Vector.png" alt="botao de editar" />
         </div>
-        <div class="pergunta2-tela-3-2">
+        <div class="perguntasQuizz">
+            <input class="textoPergunta2" type="text" minlength="20" x-moz-errormessage="" placeholder="Texto da pergunta" >
+            <input class="corPergunta2" type="text" pattern="#[0-9a-fA-F]{4,8}" maxlength="8" placeholder="Digite uma cor de fundo em hexadecimal (comece com #)">
+
+            <div> <h2>Resposta correta</h2> </div>
+            <input class="respostaCorreta2" type="text" minlength="1" placeholder="Resposta correta">
+            <input class="urlDaImage12" type="url" placeholder="URL da imagem">
+            
+            <div> <h2>Respostas incorretas</h2> </div>
+            <input class="respostaIncorreta12" type="text" minlength="1" placeholder="Resposta incorreta 1">
+            <input class="urlDaImage22" type="url" placeholder="URL da imagem 1">
+
+            <input class="respostaIncorreta22" type="text" placeholder="Resposta incorreta 2">
+            <input class="urlDaImage32" type="url" placeholder="URL da imagem 2">
+
+            <input class="respostaIncorreta32" type="text" placeholder="Resposta incorreta 3">
+            <input class="urlDaImage42" type="url" placeholder="URL da imagem 3">
+        </div>
+        <div class="pergunta2-tela-3-2" onclick="adcionaRemove(this)" >
             <div><h1>Pergunta 3</h1></div>
             <img onclick="inserePerguntas(this)" src="./imagens/Vector.png" alt="botao de editar" />
+        </div>
+        <div class="perguntasQuizz">
+            <input class="textoPergunta3" type="text" minlength="20" x-moz-errormessage="" placeholder="Texto da pergunta" >
+            <input class="corPergunta3" type="text" pattern="#[0-9a-fA-F]{4,8}" maxlength="8" placeholder="Digite uma cor de fundo em hexadecimal (comece com #)">
+
+            <div> <h2>Resposta correta</h2> </div>
+            <input class="respostaCorreta3" type="text" minlength="1" placeholder="Resposta correta">
+            <input class="urlDaImage13" type="url" placeholder="URL da imagem">
+            
+            <div> <h2>Respostas incorretas</h2> </div>
+            <input class="respostaIncorreta13" type="text" minlength="1" placeholder="Resposta incorreta 1">
+            <input class="urlDaImage23" type="url" placeholder="URL da imagem 1">
+
+            <input class="respostaIncorreta23" type="text" placeholder="Resposta incorreta 2">
+            <input class="urlDaImage33" type="url" placeholder="URL da imagem 2">
+
+            <input class="respostaIncorreta33" type="text" placeholder="Resposta incorreta 3">
+            <input class="urlDaImage43" type="url" placeholder="URL da imagem 3">
         </div>
     `;
 
@@ -278,10 +314,29 @@ function perguntasQuizz(){
     let addPergunta = document.querySelector(".tela-3-2");
 
     for(let i = 3; i < quantidadePerguntas; i++){
+        
         let perguntaAdicional = `
-        <div class="pergunta2-tela-3-2">
+        <div class="pergunta2-tela-3-2" onclick="adcionaRemove(this)" >
             <div><h1>Pergunta ${[i+1]}</h1></div>
             <img class="editaPerguntas" onclick="inserePerguntas(this)" src="./imagens/Vector.png" alt="botao de editar" />
+        </div>
+        <div class="perguntasQuizz">
+            <input class="textoPergunta${i}" type="text" minlength="20" x-moz-errormessage="" placeholder="Texto da pergunta" >
+            <input class="corPergunta${i}" type="text" pattern="#[0-9a-fA-F]{4,8}" maxlength="8" placeholder="Digite uma cor de fundo em hexadecimal (comece com #)">
+
+            <div> <h2>Resposta correta</h2> </div>
+            <input class="respostaCorreta${i}" type="text" minlength="1" placeholder="Resposta correta">
+            <input class="urlDaImage1${i}" type="url" placeholder="URL da imagem">
+            
+            <div> <h2>Respostas incorretas</h2> </div>
+            <input class="respostaIncorreta1${i}" type="text" minlength="1" placeholder="Resposta incorreta 1">
+            <input class="urlDaImage2${i}" type="url" placeholder="URL da imagem 1">
+
+            <input class="respostaIncorreta2${i}" type="text" placeholder="Resposta incorreta 2">
+            <input class="urlDaImage3${i}" type="url" placeholder="URL da imagem 2">
+
+            <input class="respostaIncorreta3${i}" type="text" placeholder="Resposta incorreta 3">
+            <input class="urlDaImage4${i}" type="url" placeholder="URL da imagem 3">
         </div>
         `;
         addPergunta.innerHTML += perguntaAdicional;
@@ -289,34 +344,13 @@ function perguntasQuizz(){
     addPergunta.innerHTML += `<button onclick="validacaoTela2()">Prosseguir pra criar níveis</button>`;
 }
 //============Incrementar lista de perguntas quando clicado no icone ===========================================================
+function adcionaRemove(){
+
+}
 function inserePerguntas(insere){
     insere.classList.toggle("click");
     let contemClick = insere.classList.contains("click");
-    if(contemClick == true){
-        let perguntas =`
-        <div class="perguntasQuizz">
-            <input class="textoPergunta" type="text" minlength="20" x-moz-errormessage="" placeholder="Texto da pergunta" >
-            <input class="corPergunta" type="text" pattern="#[0-9a-fA-F]{4,8}" maxlength="8" placeholder="Digite uma cor de fundo em hexadecimal (comece com #)">
-
-            <div> <h2>Resposta correta</h2> </div>
-            <input class="respostaIncorreta1" type="text" minlength="1" placeholder="Resposta correta">
-            <input class="urlDaImage1" type="url" placeholder="URL da imagem">
-            
-
-            <div> <h2>Respostas incorretas</h2> </div>
-            <input class="respostaIncorreta2" type="text" minlength="1" placeholder="Resposta incorreta 1">
-            <input class="urlDaImage2" type="url" placeholder="URL da imagem 1">
-
-            <input class="respostaIncorreta3" type="text" placeholder="Resposta incorreta 2">
-            <input class="urlDaImage3" type="url" placeholder="URL da imagem 2">
-
-            <input class="respostaIncorreta4" type="text" placeholder="Resposta incorreta 3">
-            <input class="urlDaImage4" type="url" placeholder="URL da imagem 3">
-        </div>
-        `;    
-        insere.innerHTML += perguntas;
-
-    }
+    let adcionaRemove = document.querySelector(".")
     console.log (contemClick);
 }
 
@@ -326,27 +360,27 @@ function guardaDadosTelaPerguntas(){
     textoPergunta = document.querySelector(".textoPergunta").value;
     corPergunta = document.querySelector(".corPergunta").value;
 
-    respostaIncorreta1 = document.querySelector(".respostaIncorreta1").value;
+    respostaCorreta = document.querySelector(".respostaCorreta").value;
     urlDaImage1 = document.querySelector(".urlDaImage1").value;
 
-    respostaIncorreta2 = document.querySelector(".respostaIncorreta2").value;
+    respostaIncorreta1 = document.querySelector(".respostaIncorreta1").value;
     urlDaImage2 = document.querySelector(".urlDaImage2").value;
 
-    respostaIncorreta3 = document.querySelector(".respostaIncorreta3").value;
+    respostaIncorreta2 = document.querySelector(".respostaIncorreta2").value;
     urlDaImage3 = document.querySelector(".urlDaImage3").value;
 
-    respostaIncorreta4 = document.querySelector(".respostaIncorreta4").value;
+    respostaIncorreta3 = document.querySelector(".respostaIncorreta3").value;
     urlDaImage4 = document.querySelector(".urlDaImage4").value;
 
     console.log(textoPergunta)
     console.log(corPergunta)
-    console.log(respostaIncorreta1)
+    console.log(respostaCorreta)
     console.log(urlDaImage1)
-    console.log(respostaIncorreta2)
+    console.log(respostaIncorreta1)
     console.log(urlDaImage2)
-    console.log(respostaIncorreta3)
+    console.log(respostaIncorreta2)
     console.log(urlDaImage3)
-    console.log(respostaIncorreta4)
+    console.log(respostaIncorreta3)
     console.log(urlDaImage4)
 
 }
@@ -361,7 +395,7 @@ function tela33() {
     let escrevendotela = document.querySelector(".tela-3-3")
     escrevendotela.classList.remove("removendo-tela")
     
-    for(let i=o; i<quantidadeNiveis;i++) {
+    for(let i=0; i<quantidadeNiveis;i++) {
         repeticao = `
         <div class="nivel-2">
     <div class="nivel-2-cabecalho">
@@ -561,12 +595,12 @@ console.log("A quantidade de levels é: " + levels);
                 color: corPergunta,
                 answers: [
                     {
-                        text: respostaIncorreta1,
+                        text: respostaCorreta,
                         image: urlDaImage1,
                         isCorrectAnswer: false
                     },
                     {
-                        text: respostaIncorreta2,
+                        text: respostaIncorreta1,
                         image: urlDaImage2,
                         isCorrectAnswer: false
                     }
