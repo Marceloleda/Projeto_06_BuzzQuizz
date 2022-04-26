@@ -5,16 +5,37 @@ let tituloQuizz = "";
 let urlImage = "";
 let quantidadePerguntas = "";
 let quantidadeNiveis = "";
+let questions; 
+
 // tela 3.2 formulario 
-let corPergunta = ""; 
-let respostaCorreta = "";
-let urlDaImage1 = ""; 
-let respostaIncorreta1 = "";
-let urlDaImage2 = ""; 
-let respostaIncorreta2 = "";
-let urlDaImage3 = ""; 
-let respostaIncorreta3 = "";
-let urlDaImage4 = ""; 
+
+let createdQuizz ={
+    title: "Título do quizz",
+    image: "https://http.cat/411.jpg",
+    questions: [],
+    levels: []
+};
+let question={
+    title: "Título da pergunta 1",
+    color: "#123456",
+    answers: []
+};
+let answer={
+    text: "Texto da resposta 1",
+    image: "https://http.cat/411.jpg",
+    isCorrectAnswer: true
+};
+let emptyAnswer={
+    text: " ",
+    image: " ",
+    isCorrectAnswer: false
+};
+let level ={
+    title: "Título do nível 1",
+    image: "https://http.cat/411.jpg",
+    text: "Descrição do nível 1",
+    minValue: 0
+};
 // Tela 1 - Pegando Quizzes da API
 function buscandoQuizzes() {
     let promise = axios.get("https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes")
@@ -163,30 +184,75 @@ function criarQuizz() {
     removendotela.classList.add("removendo-tela");
     let removendoQuizzes = document.querySelector(".quizzes-api");
     removendoQuizzes.classList.add("removendo-tela");
-// tela33()
+
    infoBasica(); 
-//    perguntasQuizz()
+
+}
+//Criação da tela Tela 3.1 - Info básica do Quiz
+function infoBasica(){
+    let infoQuizz = document.querySelector('.tela-3-1');
+    let formularioBasico =`
+        <h1>Comece pelo começo</h1>
+        <div class="infoQuizz">
+            <input id="a1" class="tituloQuizz" type="text" minlength="20" maxlength="65" x-moz-errormessage="" placeholder="Título do seu quizz" >
+            <input id="a2" class="urlImage" type="url" placeholder="URL da imagem do seu quizz">
+            <input id="a3" class="quantidadePerguntas" type="number" min="3" placeholder="Quantidade de perguntas do quizz">
+            <input id="a4" class="quantidadeNiveis" type="number" min="2" placeholder="Quantidade de níveis do quizz">
+        </div>
+        <button type="submit" onclick="proximoFormulario()">Prosseguir pra criar perguntas</button>
+    `;
+    infoQuizz.innerHTML += formularioBasico;
+}
+
+
+function isValidHttpUrl(string) { 
+    let url;
+    try {
+      url = new URL(string);
+    } catch (_) {
+      return false;  
+    }
+    return true;
+}
+function isValidColor(string){
+    if(string[0]=="#"){
+        if(string.length==7){
+            return true;
+        }
+    }
+    return false;
 }
 //Validação para proxima tela 3.2
-function validacaoTela1(){
-    let input = document.querySelector(".infoQuizz input:invalid");
-    let inputNull = document.querySelectorAll("input");
-    let validacao1;
-    let validacao2;
-    if(inputNull[0].value == "" || inputNull[1].value == "" || inputNull[2].value == "" || inputNull[3].value == ""){
-        alert("Ops! Preencha todos os campos para prosseguir! ;)");
-    }else{validacao1 = true;}
-   
-    if(input){
-        alert("Ops! Algo de errado não está certo...Coloque o mouse em cima da caixa vermelha e veja os critérios para prosseguir! ;)");
-    }else{validacao2 = true;}
-
-    if(validacao1 && validacao2 ){
-        guardaDadosTelaInfoBasicas();
-    }
-}
 function proximoFormulario(){
-    validacaoTela1();
+    title=document.getElementById("a1").value;
+    image=document.getElementById("a2").value;
+    questions=document.getElementById("a3").value;
+    levels=document.getElementById("a4").value;
+    if(title.length<20 || title.length>65){
+        alert(`Escolha um título com entre 20 e 65 caractéres, o seu está com ${title.length}`);
+        return;
+    }
+    if(!isValidHttpUrl(image)){
+        alert('Insira uma url de imagem válida');
+        return;
+    }
+    if(questions<3){
+        alert('Mínimo de 3 perguntas');
+        return;
+    }
+    if(levels<2){
+        alert('Mínimo de 2 níveis');
+        return;
+    }
+    console.log("title: "+title);
+    createdQuizz.title=title;
+
+    console.log("createdquizz.title: "+createdQuizz.title);
+    createdQuizz.image=image;
+    const div = document.querySelector(".tela-3-1");
+    div.remove();
+    perguntasQuizz();
+
 }
 
 //Dados das informações básicas da tela 3.1
@@ -204,379 +270,198 @@ function guardaDadosTelaInfoBasicas(){
     perguntasQuizz();
 }
 
-//Criação da tela Tela 3.1 - Info básica do Quiz
-function infoBasica(){
-    let infoQuizz = document.querySelector('.tela-3-1');
-    let formularioBasico =`
-        <h1>Comece pelo começo</h1>
-        <div class="infoQuizz">
-            <input class="tituloQuizz" type="text" minlength="20" maxlength="65" x-moz-errormessage="" placeholder="Título do seu quizz" >
-            <input class="urlImage" type="url" placeholder="URL da imagem do seu quizz">
-            <input class="quantidadePerguntas" type="number" min="3" placeholder="Quantidade de perguntas do quizz">
-            <input class="quantidadeNiveis" type="number" min="2" placeholder="Quantidade de níveis do quizz">
-        </div>
-        <button type="submit" onclick="proximoFormulario()">Prosseguir pra criar perguntas</button>
-    `;
-    infoQuizz.innerHTML += formularioBasico;
-}
-//Validação tela 3.2
-function validacaoTela2(){
-    let input = document.querySelector(".perguntasQuizz input:invalid");
-    let inputNull = document.querySelectorAll("input");
-    let validacao3;
-    let validacao4;
-    
-    if(inputNull[0].value == "" || inputNull[1].value == "" || inputNull[2].value == "" || inputNull[3].value == "" || inputNull[4].value == "" || inputNull[5].value == ""){
-        alert("Ops! Preencha todos os campos para prosseguir! Preencha pelo menos até uma resposta incorreta ;)");
-    }else{validacao3 = true;}
-   
-    if(input){
-        alert("Ops! Algo de errado não está certo...Coloque o mouse em cima da caixa vermelha e veja os critérios para prosseguir! ;)");
-    }else{validacao4 = true;}
 
-    if(validacao3 && validacao4 ){
-        guardaDadosTelaPerguntas();
-    }
-}
+//Validação tela 3.2
+
 
 //função para criar a Tela 3.2 - Perguntas do Quiz
 function perguntasQuizz(){
+   
     let criaPergunta = document.querySelector('.tela-3-2');
-    let perguntas =`
-        <h1>Crie suas perguntas</h1>
+    criaPergunta.innerHTML = ` <h1>Crie suas perguntas</h1>`
+    for (let i=0; i < questions;i++) {
+        criaPergunta.innerHTML +=  `
         <div class="perguntasQuizz">
-            <div> <h1>Pergunta 1</h1> </div>
-            <input class="textoPergunta" type="text" minlength="20" x-moz-errormessage="" placeholder="Texto da pergunta" >
-            <input class="corPergunta" type="text" pattern="#[0-9a-fA-F]{4,8}" maxlength="8" placeholder="Digite uma cor de fundo em hexadecimal (comece com #)">
+            <div> <h1>Pergunta ${i+1}</h1> </div>
+            <input id="a${i+1}1" class="textoPergunta${i+1}" type="text" minlength="20" x-moz-errormessage="" placeholder="Texto da pergunta" >
+            <input id="a${i+1}2" class="corPergunta${i+1}" type="text" pattern="#[0-9a-fA-F]{4,8}" maxlength="8" placeholder="Digite uma cor de fundo em hexadecimal (comece com #)">
+
             <div> <h2>Resposta correta</h2> </div>
-            <input class="respostaCorreta" type="text" minlength="1" placeholder="Resposta correta">
-            <input class="urlDaImage1" type="url" placeholder="URL da imagem">
-<<<<<<< HEAD
-            <div> <h2>Respostas incorretas</h2> </div>
-            <input class="respostaIncorreta1" type="text" minlength="1" placeholder="Resposta incorreta 1">
-            <input class="urlDaImage2" type="url" placeholder="URL da imagem 1">
-            <input class="respostaIncorreta2" type="text" placeholder="Resposta incorreta 2">
-            <input class="urlDaImage3" type="url" placeholder="URL da imagem 2">
-=======
-
-            <div> <h2>Respostas incorretas</h2> </div>
-            <input class="respostaIncorreta1" type="text" minlength="1" placeholder="Resposta incorreta 1">
-            <input class="urlDaImage2" type="url" placeholder="URL da imagem 1">
-
-            <input class="respostaIncorreta2" type="text" placeholder="Resposta incorreta 2">
-            <input class="urlDaImage3" type="url" placeholder="URL da imagem 2">
-
->>>>>>> 43109c695a31a841f4414ec9f972dac6475960d7
-            <input class="respostaIncorreta3" type="text" placeholder="Resposta incorreta 3">
-            <input class="urlDaImage4" type="url" placeholder="URL da imagem 3">
-        </div>
-        <div class="pergunta2-tela-3-2" >
-            <div><h1>Pergunta 2</h1></div>
-            <img onclick="inserePerguntas(this)" src="./imagens/Vector.png" alt="botao de editar" />
-        </div>
-        <div class="perguntasQuizz" onclick="addRemove(this)">
-            <input class="textoPergunta2" type="text" minlength="20" x-moz-errormessage="" placeholder="Texto da pergunta" >
-            <input class="corPergunta2" type="text" pattern="#[0-9a-fA-F]{4,8}" maxlength="8" placeholder="Digite uma cor de fundo em hexadecimal (comece com #)">
-<<<<<<< HEAD
-=======
-
->>>>>>> 43109c695a31a841f4414ec9f972dac6475960d7
-            <div> <h2>Resposta correta</h2> </div>
-            <input class="respostaCorreta2" type="text" minlength="1" placeholder="Resposta correta">
-            <input class="urlDaImage12" type="url" placeholder="URL da imagem">
+            <input id="a${i+1}3" class="respostaCorreta${i+1}" type="text" minlength="1" placeholder="Resposta correta">
+            <input id="a${i+1}4" class="urlDaImage${i+1}" type="url" placeholder="URL da imagem">
             
+
             <div> <h2>Respostas incorretas</h2> </div>
-            <input class="respostaIncorreta12" type="text" minlength="1" placeholder="Resposta incorreta 1">
-            <input class="urlDaImage22" type="url" placeholder="URL da imagem 1">
-<<<<<<< HEAD
-            <input class="respostaIncorreta22" type="text" placeholder="Resposta incorreta 2">
-            <input class="urlDaImage32" type="url" placeholder="URL da imagem 2">
-=======
+            <input id="a${i+1}5" class="respostaIncorreta${i+2}" type="text" minlength="1" placeholder="Resposta incorreta 1">
+            <input id="a${i+1}6" class="urlDaImage${i+2}" type="url" placeholder="URL da imagem 1">
 
-            <input class="respostaIncorreta22" type="text" placeholder="Resposta incorreta 2">
-            <input class="urlDaImage32" type="url" placeholder="URL da imagem 2">
+            <input id="a${i+1}7" class="respostaIncorreta${i+3}" type="text" placeholder="Resposta incorreta 2">
+            <input id="a${i+1}8" class="urlDaImage${i+3}" type="url" placeholder="URL da imagem 2">
 
->>>>>>> 43109c695a31a841f4414ec9f972dac6475960d7
-            <input class="respostaIncorreta32" type="text" placeholder="Resposta incorreta 3">
-            <input class="urlDaImage42" type="url" placeholder="URL da imagem 3">
+            <input id="a${i+1}9" class="respostaIncorreta${i+4}" type="text" placeholder="Resposta incorreta 3">
+            <input id="a${i+1}10" class="urlDaImage${i+4}" type="url" placeholder="URL da imagem 3">
         </div>
-        <div class="pergunta2-tela-3-2" >
-            <div><h1>Pergunta 3</h1></div>
-            <img onclick="inserePerguntas(this)" src="./imagens/Vector.png" alt="botao de editar" />
-        </div>
-        <div class="perguntasQuizz" onclick="addRemove(this)">
-            <input class="textoPergunta3" type="text" minlength="20" x-moz-errormessage="" placeholder="Texto da pergunta" >
-            <input class="corPergunta3" type="text" pattern="#[0-9a-fA-F]{4,8}" maxlength="8" placeholder="Digite uma cor de fundo em hexadecimal (comece com #)">
-<<<<<<< HEAD
-=======
-
->>>>>>> 43109c695a31a841f4414ec9f972dac6475960d7
-            <div> <h2>Resposta correta</h2> </div>
-            <input class="respostaCorreta3" type="text" minlength="1" placeholder="Resposta correta">
-            <input class="urlDaImage13" type="url" placeholder="URL da imagem">
-            
-            <div> <h2>Respostas incorretas</h2> </div>
-            <input class="respostaIncorreta13" type="text" minlength="1" placeholder="Resposta incorreta 1">
-            <input class="urlDaImage23" type="url" placeholder="URL da imagem 1">
-<<<<<<< HEAD
-            <input class="respostaIncorreta23" type="text" placeholder="Resposta incorreta 2">
-            <input class="urlDaImage33" type="url" placeholder="URL da imagem 2">
-=======
-
-            <input class="respostaIncorreta23" type="text" placeholder="Resposta incorreta 2">
-            <input class="urlDaImage33" type="url" placeholder="URL da imagem 2">
-
->>>>>>> 43109c695a31a841f4414ec9f972dac6475960d7
-            <input class="respostaIncorreta33" type="text" placeholder="Resposta incorreta 3">
-            <input class="urlDaImage43" type="url" placeholder="URL da imagem 3">
-        </div>
-    `;
-
-    criaPergunta.innerHTML += perguntas;
-    let addPergunta = document.querySelector(".tela-3-2");
-
-    for(let i = 3; i < quantidadePerguntas; i++){
-        
-        let perguntaAdicional = `
-        <div class="pergunta2-tela-3-2" >
-            <div><h1>Pergunta ${[i+1]}</h1></div>
-            <img class="editaPerguntas" onclick="inserePerguntas(this)" src="./imagens/Vector.png" alt="botao de editar" />
-        </div>
-        <div class="perguntasQuizz"  onclick="addRemove(this)">
-            <input class="textoPergunta${i}" type="text" minlength="20" x-moz-errormessage="" placeholder="Texto da pergunta" >
-            <input class="corPergunta${i}" type="text" pattern="#[0-9a-fA-F]{4,8}" maxlength="8" placeholder="Digite uma cor de fundo em hexadecimal (comece com #)">
-<<<<<<< HEAD
-=======
-
->>>>>>> 43109c695a31a841f4414ec9f972dac6475960d7
-            <div> <h2>Resposta correta</h2> </div>
-            <input class="respostaCorreta${i}" type="text" minlength="1" placeholder="Resposta correta">
-            <input class="urlDaImage1${i}" type="url" placeholder="URL da imagem">
-            
-            <div> <h2>Respostas incorretas</h2> </div>
-            <input class="respostaIncorreta1${i}" type="text" minlength="1" placeholder="Resposta incorreta 1">
-            <input class="urlDaImage2${i}" type="url" placeholder="URL da imagem 1">
-<<<<<<< HEAD
-            <input class="respostaIncorreta2${i}" type="text" placeholder="Resposta incorreta 2">
-            <input class="urlDaImage3${i}" type="url" placeholder="URL da imagem 2">
-=======
-
-            <input class="respostaIncorreta2${i}" type="text" placeholder="Resposta incorreta 2">
-            <input class="urlDaImage3${i}" type="url" placeholder="URL da imagem 2">
-
->>>>>>> 43109c695a31a841f4414ec9f972dac6475960d7
-            <input class="respostaIncorreta3${i}" type="text" placeholder="Resposta incorreta 3">
-            <input class="urlDaImage4${i}" type="url" placeholder="URL da imagem 3">
-        </div>
-        `;
-        addPergunta.innerHTML += perguntaAdicional;
+        `
     }
-    addPergunta.innerHTML += `<button onclick="validacaoTela2()">Prosseguir pra criar níveis</button>`;
-}
-//============Incrementar lista de perguntas quando clicado no icone ===========================================================
-// function adcionaRemove(response){
-//     response.classList.add("removendo-tela");
-//     console.log(response)
-// }
-// function addRemove(response){
-//     // let adcionaRemove = document.querySelector(".perguntasQuizz");
-//     // response.classList.toggle("hide");
-//     // const aberto = response.style.di
-//     if(response.style.display === 'block') {
-//         response.style.display = 'none';
-//     } else {
-//         response.style.display = 'block';
-//     }
-
-//     alert("clicou")
-
-// }
-// function inserePerguntas(insere){
-//     insere.classList.contains("click");
-//     const contemClick = insere.classList.contains("click");
+    criaPergunta.innerHTML += `<button onclick="validacaoTela2()">Prosseguir pra criar níveis</button>`
     
-//     addRemove();
-// }
-
-// ============Guardar respostas do formulario de perguntas da tela 3.2==========================================================
-
-function guardaDadosTelaPerguntas(){
-    textoPergunta = document.querySelector(".textoPergunta").value;
-    corPergunta = document.querySelector(".corPergunta").value;
-
-    respostaCorreta = document.querySelector(".respostaCorreta").value;
-    urlDaImage1 = document.querySelector(".urlDaImage1").value;
-
-    respostaIncorreta1 = document.querySelector(".respostaIncorreta1").value;
-    urlDaImage2 = document.querySelector(".urlDaImage2").value;
-
-    respostaIncorreta2 = document.querySelector(".respostaIncorreta2").value;
-    urlDaImage3 = document.querySelector(".urlDaImage3").value;
-
-    respostaIncorreta3 = document.querySelector(".respostaIncorreta3").value;
-    urlDaImage4 = document.querySelector(".urlDaImage4").value;
-
-    console.log(textoPergunta)
-    console.log(corPergunta)
-    console.log(respostaCorreta)
-    console.log(urlDaImage1)
-    console.log(respostaIncorreta1)
-    console.log(urlDaImage2)
-    console.log(respostaIncorreta2)
-    console.log(urlDaImage3)
-    console.log(respostaIncorreta3)
-    console.log(urlDaImage4)
-
+        
 }
+function validacaoTela2() {
+    for(let i =0;i<questions;i++){
+        question.title=document.getElementById(`a${i+1}1`).value;
+        question.color=document.getElementById(`a${i+1}2`).value;
+        
+        answer.text=document.getElementById(`a${i+1}3`).value;
+        if(answer.text==""){
+            alert('Insira um texto para a resposta');
+            return;
+        }
+        answer.image=document.getElementById(`a${i+1}4`).value;
+        if(!isValidHttpUrl(answer.image)){
+            alert('Insira uma url de imagem válida');
+            return;
+        }
+        answer.isCorrectAnswer=true;
+        question.answers[0]=answer;
 
-function enviarPerguntas(){
-    validacaoTela2();
+        answer.text=document.getElementById(`a${i+1}5`).value;
+        if(answer.text==""){
+            alert('Insira um texto para a resposta');
+            return;
+        }
+        answer.image=document.getElementById(`a${i+1}6`).value;
+        if(!isValidHttpUrl(answer.image)){
+            alert('Insira uma url de imagem válida');
+            return;
+        }
+        answer.isCorrectAnswer=false;
+        question.answers[1]=answer;
+
+        answer.text=document.getElementById(`a${i+1}7`).value;
+        answer.image=document.getElementById(`a${i+1}8`).value;
+        answer.isCorrectAnswer=false;
+        if(answer.text!=""){
+            if(!isValidHttpUrl(answer.image)){
+                alert('Insira uma url de imagem válida');
+                return;
+            } 
+        }
+        if(answer.text==""){
+            question.answers[2]=emptyAnswer;
+        }else{
+            question.answers[2]=answer;
+        }
+
+        answer.text=document.getElementById(`a${i+1}9`).value;
+        answer.image=document.getElementById(`a${i+1}10`).value;
+        answer.isCorrectAnswer=false;
+        if(answer.text!=""){
+            if(!isValidHttpUrl(answer.image)){
+                alert('Insira uma url de imagem válida');
+                return;
+            } 
+        }
+        if(answer.text==""){
+            question.answers[3]=emptyAnswer;
+        }else{
+            question.answers[3]=answer;
+        }
+
+        if(question.title.length<20){
+            alert(`Escolha um título com no mínimo 20 caractéres`);
+            return;
+        }
+        if(!isValidColor(question.color)){
+            alert('Insira uma cor válida');
+            return;
+        }
+        createdQuizz.questions[i]=question;
+    }
+tela33();
 }
 
 // Função tela33: Essa função escreve a tela 3-3 e será ativada ao final da tela 3-2
 
 function tela33() {
-    let escrevendotela = document.querySelector(".tela-3-3")
+    let escrevendotela = document.querySelector(".tela-3-3");
+    let criaPergunta = document.querySelector(".tela-3-2");
+    criaPergunta.classList.add("removendo-tela")
     escrevendotela.classList.remove("removendo-tela")
     
-    for(let i=0; i<quantidadeNiveis;i++) {
-        repeticao = `
-        <div class="nivel-2">
-    <div class="nivel-2-cabecalho">
-        <h4>Nível 2</h4>
-        <img class="imagem-nivel-2" src="imagens/Vector.png" alt="">
-    </div>
-    <input id="nivel-2-titulo" placeholder="Título do nível" type="text" value=""> <br> <br>
-    <input id="nivel-2-porcentagem" placeholder="% de acerto mínima" type="text" value="">  <br> <br>
-    <input id="nivel-2-url" placeholder="URL da imagem do nível" type="text" value="">  <br> <br>
-    <input id="nivel-2-descricao" placeholder="Descrição do nível" type="text" value="">
-</div>
-        `
-    }
+    escrevendotela.innerHTML = ""
 
-
-
-    
-    
-    
-    escrevendotela.innerHTML = `<div class="titulo-tela-3-3">
+    escrevendotela.innerHTML += `<div class="titulo-tela-3-3">
     <h3>Agora, decida os níveis</h3>
-</div>
-<div class="nivel-1">
-    <h4>Nível 1</h4>
+    </div> `
+
+        for(let i=0;i<levels;i++) {
+         
+            escrevendotela.innerHTML += `
+            <div class="nivel">
+                <div class="nivel-cabecalho">
+                    <h4>Nível ${i+1}</h4>
+                    <img class="imagem-nivel-2" src="imagens/Vector.png" alt="">
+                </div>
+                
+                <input id="a${i+1}1" placeholder="Título do nível" type="text" value=""> <br> <br>
+                <input id="a${i+1}2" placeholder="% de acerto mínima" type="text" value="">  <br> <br>
+                <input id="a${i+1}3" placeholder="URL da imagem do nível" type="text" value="">  <br> <br>
+                <input id="a${i+1}4" placeholder="Descrição do nível" type="text" value="">
+            </div>
+        ` } 
     
-    <input id="nivel-1-titulo" placeholder="Título do nível" type="text" value=""> <br> <br>
-    <input id="nivel-1-porcentagem" placeholder="% de acerto mínima" type="text" value="">  <br> <br>
-    <input id="nivel-1-url" placeholder="URL da imagem do nível" type="text" value="">  <br> <br>
-    <input id="nivel-1-descricao" placeholder="Descrição do nível" type="text" value="">
-</div>
-<div class="nivel-2">
-    <div class="nivel-2-cabecalho">
-        <h4>Nível 2</h4>
-        <img class="imagem-nivel-2" src="imagens/Vector.png" alt="">
-    </div>
-    <input id="nivel-2-titulo" placeholder="Título do nível" type="text" value=""> <br> <br>
-    <input id="nivel-2-porcentagem" placeholder="% de acerto mínima" type="text" value="">  <br> <br>
-    <input id="nivel-2-url" placeholder="URL da imagem do nível" type="text" value="">  <br> <br>
-    <input id="nivel-2-descricao" placeholder="Descrição do nível" type="text" value="">
-</div>
-<div class="nivel-3">
-    <div class="nivel-3-cabecalho">
-        <h4>Nível 3</h4>
-        <img class="imagem-nivel-2" src="imagens/Vector.png" alt="">
-    </div>
-    <input id="nivel-3-titulo" placeholder="Título do nível" type="text" value=""> <br> <br>
-    <input id="nivel-3-porcentagem" placeholder="% de acerto mínima" type="text" value="">  <br> <br>
-    <input id="nivel-3-url" placeholder="URL da imagem do nível" type="text" value="">  <br> <br>
-    <input id="nivel-3-descricao" placeholder="Descrição do nível" type="text" value="">
-</div>
-<div class="botao-finalizar-quizz">
-    <button onclick="finalizarQuizz()" value="">
-        <h3> Finalizar Quizz</h3>
-    </button>
-</div>
-    
-    `
+            escrevendotela.innerHTML += `<div class="botao-finalizar-quizz">
+            <button onclick="finalizarQuizz()" value="">
+                <h3> Finalizar Quizz</h3>
+            </button>
+        </div>
+            `
 }
+
 // final da função tela33
 
 // Função finalizarQuizz: Essa função será ativada ao final da tela 3-3, quando clicarmos no botão de finalizar Quizz
 
 function finalizarQuizz() {
-    let titulo1 = document.getElementById("nivel-1-titulo").value
-    let porcentagem1 = document.getElementById("nivel-1-porcentagem").value
-    let url1 = document.getElementById("nivel-1-url").value
-    let descricao1 = document.getElementById("nivel-1-descricao").value
-    let titulo2 = document.getElementById("nivel-2-titulo").value
-    let porcentagem2 = document.getElementById("nivel-2-porcentagem").value
-    let url2 = document.getElementById("nivel-2-url").value
-    let descricao2 = document.getElementById("nivel-2-descricao").value
-    let titulo3 = document.getElementById("nivel-3-titulo").value
-    let porcentagem3 = document.getElementById("nivel-3-porcentagem").value
-    let url3 = document.getElementById("nivel-3-url").value
-    let descricao3 = document.getElementById("nivel-3-descricao").value
-    
-
-
-    console.log(porcentagem1)
-    console.log(porcentagem2)
-    console.log(porcentagem3)
-    quantidadeNiveis = 2;
-    
-         
-            
-
-
-
-
-
-
-
-
-            if(quantidadeNiveis == 2) {
-                let removendoNivel3 = document.querySelector(".nivel-3");
-                removendoNivel3.classList.add("removendo-tela")
-            }
-
-
-    if(quantidadeNiveis == 2) {
-        if((titulo1.length > 10) || (titulo2.length > 10) )  {
-            alert("O título tem mais que 10 caracteres. Preencha novamente")
-        } else if((porcentagem1 <0) || (porcentagem1 > 100) || (porcentagem2 <0) || (porcentagem2 > 100)) {
-            alert("A porcentagem deve ser um número entre 0 e 100. Preencha novamente")
-        } else if((url1.substr(0,7) !== "http://") || (url2.substr(0,7) !== "http://")) {
-            alert("Você não colocou um formato de ULR válido. Inicie com 'http://'")
-        } else if((descricao1.length < 30) ||(descricao2.length < 30)) {
-            alert("A sua descrição deve conter mais que 30 caracteres")
-        } else if((porcentagem1 == 0) || (porcentagem2 == 0)) { 
-            alert("Enviando level2");
-                console.log("o nível é: " + levels)
-            } else {
-                alert("Pelo menos uma das porcentagens mínimas deve ser zero")
-            }
-
-     
-    }
-    
-
-    if(quantidadeNiveis == 3) {
-        if((titulo1.length > 10) || (titulo2.length > 10) || (titulo3.length > 10) ) {
-            alert("O título tem mais que 10 caracteres. Preencha novamente")
-        } else if((porcentagem1 <0) || (porcentagem1 > 100) || (porcentagem2 <0) || (porcentagem2 > 100) || (porcentagem3 <0) || (porcentagem3 > 100)) {
-            alert("A porcentagem deve ser um número entre 0 e 100. Preencha novamente")
-        } else if((url1.substr(0,7) !== "http://") || (url2.substr(0,7) !== "http://") || (url3.substr(0,7) !== "http://")) {
-            alert("Você não colocou um formato de ULR válido. Inicie com 'http://'")
-        } else if((descricao1.length < 30) ||(descricao2.length < 30) || (descricao3.length < 30)) {
-            alert("A sua descrição deve conter mais que 30 caracteres")
-        } else if((porcentagem1 == 0) || (porcentagem2 == 0) || (porcentagem3 == 0)) { 
-        alert("finalizado") 
-        } else {
-            alert("Pelo menos uma das porcentagens mínimas deve ser zero")
+    let zero=false;
+    for(let i =0;i<levels;i++){
+        level.title=document.getElementById(`a${i+1}1`).value;
+        if(level.title.length<10 ){
+            alert(`Escolha um título com no mínimo 10 caractéres`);
+            return;
         }
-    
+        level.minValue=document.getElementById(`a${i+1}2`).value;
+        if(level.minValue=="0"){
+            zero=true;
+        }
+        if(!(level.minValue>=0 || level.minValue<=100)){
+            alert('Insira um valor de 0 a 100 para o nível');
+            return;
+        }
+        level.image=document.getElementById(`a${i+1}3`).value;
+        if(!isValidHttpUrl(level.image)){
+            alert('Insira uma url de imagem válida');
+            return;
+        }
+        level.text=document.getElementById(`a${i+1}4`).value;
+        if(level.text.length<30 ){
+            alert(`Escolha uma descrição com no mínimo 30 caractéres`);
+            return;
+        }
+
+        createdQuizz.levels[i]=level;
     }
+    if(zero==false){
+        alert("Pelo menos um dos níveis deve ter o valor 0");
+        tela33();
+    }
+
+    enviandoQuizz()
+    /////////// postando quizz
+    
 }
-//enviandoQuizz();
+
 // Final da função finalizar Quizz
 
 // Função tela 3-4
@@ -597,83 +482,19 @@ function tela34() {
 }
  
 function enviandoQuizz() {
-    //Fazer dois o
-   /*let levels = []
-    if(quantidadeNiveis == 2) {
-         levels = [
-            {
-                title: titulo1,
-                image: url1,
-                text: descricao1,
-                minValue: porcentagem1
-            },
-            {
-                title: titulo2,
-                image: url2,
-                text: descricao2,
-                minValue: porcentagem2
-            }
-            
-            ]
-    }*/
-console.log("A quantidade de levels é: " + levels);
 
-    /*let novoQuizz = {
-        title: tituloQuizz,
-        image: urlImage,
-        questions: [
-            {
-                title: textoPergunta,
-                color: corPergunta,
-                answers: [
-                    {
-                        text: respostaCorreta,
-                        image: urlDaImage1,
-                        isCorrectAnswer: false
-                    },
-                    {
-                        text: respostaIncorreta1,
-                        image: urlDaImage2,
-                        isCorrectAnswer: false
-                    }
-                ]
-            },
-            {
-                title: "Título da pergunta 2",
-                color: "#123456",
-                answers: [
-                    {
-                        text: "Texto da resposta 1",
-                        image: "https://http.cat/411.jpg",
-                        isCorrectAnswer: true
-                    },
-                    {
-                        text: "Texto da resposta 2",
-                        image: "https://http.cat/412.jpg",
-                        isCorrectAnswer: false
-                    }
-                ]
-            },
-            {
-                title: "Título da pergunta 3",
-                color: "#123456",
-                answers: [
-                    {
-                        text: "Texto da resposta 1",
-                        image: "https://http.cat/411.jpg",
-                        isCorrectAnswer: true
-                    },
-                    {
-                        text: "Texto da resposta 2",
-                        image: "https://http.cat/412.jpg",
-                        isCorrectAnswer: false
-                    }
-                ]
-            }
-        ],
-        levels: levels
-    }
-       */ 
+    let promise=axios.post('https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes',createdQuizz);
+    promise.then(finalizandoEnvio);
+    promise.catch(erroEnvioQuizz)
+
 }
+
+function finalizandoEnvio() {
+    console.log("quizz enviado")
+}
+function erroEnvioQuizz() {
+    console.log("Erro no envio do Quizz")
+}
+
 
 buscandoQuizzes();
