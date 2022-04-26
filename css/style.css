@@ -107,6 +107,9 @@ header h2 {
 .removendo-tela {
     display: none;
 }
+.esconde{
+    display: hidde;
+}
 /* Final das classes referentes ao cabeçalho */
 
 /* Tela 1: Renderizando a lista de Quizzes*/
@@ -411,7 +414,16 @@ header h2 {
     font-weight: 700;
     margin-bottom: 30px;
 }
-
+.perguntasQuizz {
+    opacity: 1;
+    transition: opacity .5s linear;
+  }
+  
+  .perguntasQuizz.hide {
+    opacity: 0;
+    pointer-events: none;
+  }
+  
 .perguntasQuizz{
     padding: 20px;
     display: flex;

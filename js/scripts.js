@@ -264,11 +264,11 @@ function perguntasQuizz(){
             <input class="respostaIncorreta3" type="text" placeholder="Resposta incorreta 3">
             <input class="urlDaImage4" type="url" placeholder="URL da imagem 3">
         </div>
-        <div class="pergunta2-tela-3-2" onclick="adcionaRemove(this)" >
+        <div class="pergunta2-tela-3-2" >
             <div><h1>Pergunta 2</h1></div>
             <img onclick="inserePerguntas(this)" src="./imagens/Vector.png" alt="botao de editar" />
         </div>
-        <div class="perguntasQuizz">
+        <div class="perguntasQuizz" onclick="addRemove(this)">
             <input class="textoPergunta2" type="text" minlength="20" x-moz-errormessage="" placeholder="Texto da pergunta" >
             <input class="corPergunta2" type="text" pattern="#[0-9a-fA-F]{4,8}" maxlength="8" placeholder="Digite uma cor de fundo em hexadecimal (comece com #)">
 
@@ -286,11 +286,11 @@ function perguntasQuizz(){
             <input class="respostaIncorreta32" type="text" placeholder="Resposta incorreta 3">
             <input class="urlDaImage42" type="url" placeholder="URL da imagem 3">
         </div>
-        <div class="pergunta2-tela-3-2" onclick="adcionaRemove(this)" >
+        <div class="pergunta2-tela-3-2" >
             <div><h1>Pergunta 3</h1></div>
             <img onclick="inserePerguntas(this)" src="./imagens/Vector.png" alt="botao de editar" />
         </div>
-        <div class="perguntasQuizz">
+        <div class="perguntasQuizz" onclick="addRemove(this)">
             <input class="textoPergunta3" type="text" minlength="20" x-moz-errormessage="" placeholder="Texto da pergunta" >
             <input class="corPergunta3" type="text" pattern="#[0-9a-fA-F]{4,8}" maxlength="8" placeholder="Digite uma cor de fundo em hexadecimal (comece com #)">
 
@@ -316,11 +316,11 @@ function perguntasQuizz(){
     for(let i = 3; i < quantidadePerguntas; i++){
         
         let perguntaAdicional = `
-        <div class="pergunta2-tela-3-2" onclick="adcionaRemove(this)" >
+        <div class="pergunta2-tela-3-2" >
             <div><h1>Pergunta ${[i+1]}</h1></div>
             <img class="editaPerguntas" onclick="inserePerguntas(this)" src="./imagens/Vector.png" alt="botao de editar" />
         </div>
-        <div class="perguntasQuizz">
+        <div class="perguntasQuizz"  onclick="addRemove(this)">
             <input class="textoPergunta${i}" type="text" minlength="20" x-moz-errormessage="" placeholder="Texto da pergunta" >
             <input class="corPergunta${i}" type="text" pattern="#[0-9a-fA-F]{4,8}" maxlength="8" placeholder="Digite uma cor de fundo em hexadecimal (comece com #)">
 
@@ -344,15 +344,29 @@ function perguntasQuizz(){
     addPergunta.innerHTML += `<button onclick="validacaoTela2()">Prosseguir pra criar níveis</button>`;
 }
 //============Incrementar lista de perguntas quando clicado no icone ===========================================================
-function adcionaRemove(){
+// function adcionaRemove(response){
+//     response.classList.add("removendo-tela");
+//     console.log(response)
+// }
+// function addRemove(response){
+//     // let adcionaRemove = document.querySelector(".perguntasQuizz");
+//     // response.classList.toggle("hide");
+//     // const aberto = response.style.di
+//     if(response.style.display === 'block') {
+//         response.style.display = 'none';
+//     } else {
+//         response.style.display = 'block';
+//     }
 
-}
-function inserePerguntas(insere){
-    insere.classList.toggle("click");
-    let contemClick = insere.classList.contains("click");
-    let adcionaRemove = document.querySelector(".")
-    console.log (contemClick);
-}
+//     alert("clicou")
+
+// }
+// function inserePerguntas(insere){
+//     insere.classList.contains("click");
+//     const contemClick = insere.classList.contains("click");
+    
+//     addRemove();
+// }
 
 // ============Guardar respostas do formulario de perguntas da tela 3.2==========================================================
 
